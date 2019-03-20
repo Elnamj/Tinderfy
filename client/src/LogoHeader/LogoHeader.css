@@ -1,0 +1,10 @@
+
+.logo-header{
+ height: 100px;
+ background-color: white;
+}
+
+.logo {
+ height: 100px;
+ object-fit: contain;
+}

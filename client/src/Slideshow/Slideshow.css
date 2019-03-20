@@ -1,0 +1,94 @@
+.slides{
+  margin: 0px;
+  padding-top: 50px;
+  height: 700px;
+  box-sizing: border-box;
+}
+
+.content{
+  margin: auto;
+  width: 50px;
+  perspective: 1000px;
+  position: absolute;
+  padding-top: 80px;
+}
+
+.carrousel{
+  margin-top: 20%;
+  width: 100%;
+  position: relative;
+  /* float: right; */
+   -webkit-animation: rotating 15s infinite linear;
+  transform-style: preserve-3d;
+}
+
+.carrousel figure{
+  width: 150px;
+  height: 150px;
+  border: 1px solid #000000;
+  overflow: hidden;
+  position: absolute;
+}
+
+.carrousel :nth-child(1){
+  transform: rotateY(0deg) translateZ(250px);
+}
+
+.carrousel :nth-child(2){
+  transform: rotateY(40deg) translateZ(250px);
+}
+
+.carrousel :nth-child(3){
+  transform: rotateY(80deg) translateZ(250px);
+}
+
+.carrousel :nth-child(4){
+  transform: rotateY(120deg) translateZ(250px);
+}
+
+.carrousel :nth-child(5){
+  transform: rotateY(160deg) translateZ(250px);
+}
+
+.carrousel :nth-child(6){
+  transform: rotateY(200deg) translateZ(250px);
+}
+
+.carrousel :nth-child(7){
+  transform: rotateY(240deg) translateZ(250px);
+}
+
+.carrousel :nth-child(8){
+  transform: rotateY(280deg) translateZ(250px);
+}
+
+.carrousel :nth-child(9){
+  transform: rotateY(320deg) translateZ(250px);
+}
+
+.shadow {
+  position: absolute;
+  -webkit-box-shadow: 0 20px 6px -6px black;
+	   -moz-box-shadow: 0 20px 6px -6px black;
+	        box-shadow: 0 20px 6px -6px black;
+}
+
+.carrousel figure{
+  image-rendering: auto;
+  transition: 30ms;
+  width: 150px;
+  height: 150px;
+}
+
+@keyframes rotating{
+  from {
+    transform:rotateY(0deg);
+  }
+  to {
+    transform:rotateY(360deg);
+  }
+}
+
+.btn-position{
+  margin-bottom: 100px;
+}

@@ -1,0 +1,25 @@
+/*.blackBorder {
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.43);
+}
+
+.backgroundForm{
+  background: rgba(0, 0, 0, 0.75);
+}
+
+label{
+  font-weight: bold;
+  color: white;
+  font-size: 12px;
+}
+
+h3{
+  color: white;
+}
+
+body{
+  background-image: url("https://images.pexels.com/photos/1805895/pexels-photo-1805895.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}*/
