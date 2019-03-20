@@ -3,11 +3,8 @@
 
 # dependencies
 /node_modules
-/auth-server/node_modules
 /client/node_modules
-/auth-server/authorization_code/secrets.js
-package-lock.json
-package.json
+
 
 # testing
 /coverage
