@@ -2,7 +2,7 @@ Tinderfy
 =================================================
 
 This app will let the user enter search filters and then present recommended songs based on this choice as well as what kind of music the user usually listens to. The song will be presented with a card containing title and album cover and a 30 second clip will also play. The user can either decide to add the song to a playlist by swiping to the right, or ignore the song by swiping to the left. 
-For Heroku we are not using this kth-git, instead we have made two repositorys in github to use, one for backend and one for frontend.
+For the Heroku app, we use this front-end repository and one back-end repository. The back-end repository contains files that we have gotten from the Spotify Web API page for authorization. We have changed very little in this code and it is quite unneccessary to look at when reviewing our project.
 
 What we have done
 =====================
