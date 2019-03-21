@@ -30,6 +30,8 @@ Slideshow folder - this folder contains the following folder and files:
 
 Presentation folder - This folder contains two files, one containing js and one with css. The js one collects the playlist from the Modul and then uses map to go through the playlist and disply each song in a container. The css-file styles the js-file with a picture and container and more.  
 
+Filter folder - tis folder contains the following  two files: Filter.css for styling and Filter.js. In Filter.js a form is created so that the user can search and filter tracks. The user can select genres, moods and search for playlists and free texts. For now the options is hard coded in Model and not generated from the api. When clicking on the ”start matching” button the user will end up on the swipe page. 
+
 Swipe folder - this folder contains the following files:
 	Swipe.css - styling for the swipe component
 	Swipe.js - takes care of the swipe page. Initializes SwipeCard components for each song (the song is passed as a props) and adds these songs to a playlist if they are "liked" by the user. The Swipe component has different states depending on if it's loading, if the song list is empty, if it's in "regular view" (desktop + mobile) or if it's in "detail view" (mobile only). The state is also passed down through props to the SwipeCard component. Also contains a hard-coded list of songs that are used for the swipe right now, will be switched out later to an actual API call.
