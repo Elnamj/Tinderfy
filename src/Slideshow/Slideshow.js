@@ -22,7 +22,7 @@ class Slideshow extends Component {
               </div>
             </section>
             <div className="row btn-position">
-            <a href={process.env.NODE_ENV === "production" ? "https://tinderfy-backend.herokuapp.com/login" : 'http://localhost:8888/login'} >
+            <a href="https://tinderfy-backend.herokuapp.com/login" >
               <button className="btn btn-success">Login to Spotify </button>
             </a>
             </div>
