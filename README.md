@@ -2,6 +2,7 @@ Tinderfy
 =================================================
 
 This app will let the user enter search filters and then present recommended songs based on this choice as well as what kind of music the user usually listens to. The song will be presented with a card containing title and album cover and a 30 second clip will also play. The user can either decide to add the song to a playlist by swiping to the right, or ignore the song by swiping to the left. 
+For the Heroku app, we use this front-end repository and one back-end repository. The back-end repository contains files that we have gotten from the Spotify Web API page for authorization. We have changed very little in this code and it is quite unneccessary to look at when reviewing our project.
 
 What we have done
 =====================
@@ -15,7 +16,27 @@ We have some work left with the API. Right now, we are using a hardcoded list of
 
 Our project file structure (short description/purpose of each file)
 =====================
-Auth-server folder - Contains authorization code provided by Spotify.
 
-Swipe folder - This folder contains
-....
+Images folder <br/>- contains images that are used throughout the app, i.e. our logo and the heart button
+
+FirstPage folder - this folder contains the following files:
+	<br/>FirstPage.js - this is the first page of the website and contains the Slideshow-component.
+	<br/>FirstPage.css - styling of the first page (background image).
+
+Slideshow folder - this folder contains the following folder and files:
+	<br/>Images - this folder contains 9 image-files which is not used at the moment. Ignore these.
+	<br/>Slideshow.js - this contains the spinning slideshow presenting 9 album covers.
+	<br/>Slideshow.css - styling of the slideshow.
+
+Presentation folder - This folder contains two files, one containing js and one with css. The js one collects the playlist from the Modul and then uses map to go through the playlist and disply each song in a container. The css-file styles the js-file with a picture and container and more.  
+
+Filter folder - this folder contains the following  two files: Filter.css for styling and Filter.js. In Filter.js a form is created so that the user can search and filter tracks. The user can select genres, moods and search for playlists and free texts. For now the options is hard coded in Model and not generated from the api. When clicking on the ”start matching” button the user will end up on the swipe page. 
+
+Swipe folder - this folder contains the following files:
+	<br/>Swipe.css - styling for the swipe component
+	<br/>Swipe.js - takes care of the swipe page. Initializes SwipeCard components for each song (the song is passed as a props) and adds these songs to a playlist if they are "liked" by the user. The Swipe component has different states depending on if it's loading, if the song list is empty, if it's in "regular view" (desktop + mobile) or if it's in "detail view" (mobile only). The state is also passed down through props to the SwipeCard component. Also contains a hard-coded list of songs that are used for the swipe right now, will be switched out later to an actual API call.
+	
+SwipeCard folder - this folder contains the following files:
+	<br/>SwipeCard.css - styling for the swipe card component
+	<br/>SwipeCard.js - is responsible for creating a song card containing info from the song passed as a prop from the Swipe component.
+
