@@ -7,6 +7,7 @@ import Presentation from "./Presentation/Presentation";
 import Swipe from "./Swipe/Swipe";
 import LogoHeader from "./LogoHeader/LogoHeader";
 import FirstPage from "./FirstPage/FirstPage";
+import Testing from "./testing/testing";
 
 class App extends Component {
   constructor() {
@@ -49,7 +50,6 @@ class App extends Component {
     this.search().then(track => {
       console.log(track);
     });
-
     return (
       <div className="App">
         <header className="App-header">
@@ -57,11 +57,15 @@ class App extends Component {
             <button>Login to Spotify </button>
           </a>*/}
           <div>
+            {
+              model.setToken(this.token);
+            }
           </div>
-          { this.state.loggedIn &&
+
+          {/* this.state.loggedIn &&
           <button onClick={() => this.search()}>
             Check genre
-          </button>
+          </button>*/
           }
 
 
@@ -83,6 +87,10 @@ class App extends Component {
           <Route
             path="/FirstPage"
             render={() => <FirstPage model={model} />}
+          />
+          <Route
+            path="/testing"
+            render={() => <Testing model={model} />}
           />
         </header>
       </div>
