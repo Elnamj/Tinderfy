@@ -1,13 +1,14 @@
 import React, {Component} from "react";
 import { Link } from "react-router-dom";
+import model from "../data/Model";
 import "./Filter.css";
+import App from "../App"
 
 class Filter extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          genreType: this.props.model.getGenreTypeList(),
-          moodType: this.props.model.getMoodTypeList()
+          genreType: this.props.model.getGenreTypeList()
         };
     }
 
@@ -17,13 +18,12 @@ class Filter extends Component {
       ));
     }
 
-    moodTypeSelect() {
-      return this.state.moodType.map(songType => (
-          <option key={songType} value={songType.toLowerCase()}>{songType}</option>
-      ));
-    }
 
     render() {
+      model.setAccToken();
+      model.search().then(track => {
+        console.log(track);
+      });
         return (
             <div className="row-sm-12 row-lg-12 py-lg-5 my-lg-5" align="center">
                 <div className="blackBorder backgroundForm col-lg-3 col-sm-12">
@@ -34,12 +34,6 @@ class Filter extends Component {
                                 <label>Genre</label>
                                 <select className="form-control">
                                     {this.genreTypeSelect()}
-                                </select>
-                            </div>
-                            <div className="form-group text-left">
-                                <label>Mood</label>
-                                <select className="form-control">
-                                    {this.moodTypeSelect()}
                                 </select>
                             </div>
                             <div className="form-group text-left">

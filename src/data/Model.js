@@ -1,4 +1,6 @@
 import ObservableModel from "./ObservableModel";
+import React, { Component } from "react";
+import { Router, Link } from 'react-router';
 
 class Model extends ObservableModel {
     constructor(props) {
@@ -7,12 +9,10 @@ class Model extends ObservableModel {
         this._searchResult = [];
         this._playlist = [];
         this._playlistName = "";
-        this.token = "";
-        this.state = {
-          httpOptions: {
-            headers: { 'Authorization': 'Bearer ' + this.token}
-          }
-        }
+        this.httpOptions = {
+            headers: { 'Authorization': 'Bearer '}
+          };
+        this.setAccToken = this.setAccToken.bind(this);
       }
 
     getGenreTypeList() {
@@ -23,27 +23,43 @@ class Model extends ObservableModel {
         return this._playlist;
     }
 
-    setPlaylistName(){
-
-    }
-
     getPlaylistName(){
       return this._playlistName;
     }
 
-    addToPlaylist(){
+    getHashParams() {
+      var hashParams = {};
+      var e, r = /([^&;=]+)=?([^&;]*)/g,
+          q = window.location.hash.substring(1);
+
+      e = r.exec(q)
+      while (e) {
+         hashParams[e[1]] = decodeURIComponent(e[2]);
+         e = r.exec(q);
+
+      }
+      return hashParams;
+    }
+
+    setAccToken() {
+      this.httpOptions = {
+        headers: { 'Authorization': 'Bearer ' + this.getHashParams().access_token}};
+    }
+
+
+    getArtistId(){
+      console.log(this.token);
+      const url = "https://api.spotify.com/v1/search?q=Madonna&type=track";
+      return fetch(url, this.httpOptions).then(response => response.json())
+      .catch(this.handleError);
 
     }
-    setToken(token){
-      this.token = token;
-    }
 
-    getArtistId(artistName){
-    const url = "\thttps://api.spotify.com/v1/me";
-    return fetch(url, this.state.httpOptions).then(response => response.json())
-        .catch(this.handleError);
+    search(q) {
+          const url = "https://api.spotify.com/v1/search?q=Madonna&type=track";
+          return fetch(url, this.httpOptions).then(response => response.json())
+          .catch(this.handleError);
     }
-
 
 }
 

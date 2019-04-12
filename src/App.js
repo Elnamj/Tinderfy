@@ -12,44 +12,25 @@ import Testing from "./testing/testing";
 class App extends Component {
   constructor() {
     super();
-    const params = this.getHashParams();
-    const token = params.access_token;
+
     /*if (token) {
       spotifyApi.setAccessToken(token);
     }
     */
     this.state = {
-      loggedIn: token ? true : false,
-      nowPlaying: { name: 'Not Checked', albumArt: '' },
       title: "Tinderfy",
-      httpOptions: {
-        headers: { 'Authorization': 'Bearer ' + token}
-      }
+
     }
   }
-
-  getHashParams() {
-    var hashParams = {};
-    var e, r = /([^&;=]+)=?([^&;]*)/g,
-        q = window.location.hash.substring(1);
-    e = r.exec(q)
-    while (e) {
-       hashParams[e[1]] = decodeURIComponent(e[2]);
-       e = r.exec(q);
-    }
-    return hashParams;
-  }
-
+/*
   search(q) {
       const url = "https://api.spotify.com/v1/search?q=Beyonce&type=track";
       return fetch(url, this.state.httpOptions).then(response => response.json())
       .catch(this.handleError);
   }
-
+*/
   render() {
-    this.search().then(track => {
-      console.log(track);
-    });
+
     return (
       <div className="App">
         <header className="App-header">
@@ -57,9 +38,7 @@ class App extends Component {
             <button>Login to Spotify </button>
           </a>*/}
           <div>
-            {
-              model.setToken(this.token);
-            }
+
           </div>
 
           {/* this.state.loggedIn &&
