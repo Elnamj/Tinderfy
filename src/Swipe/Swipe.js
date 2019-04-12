@@ -14,11 +14,16 @@ class Swipe extends Component {
             state: "REG_VIEW",
             current_song: song_list[0],
             playlist: [],
-            mobile: window.innerWidth <= 500
+            mobile: window.innerWidth <= 500,
+            start_pos: 0
         };
         this.handleSongAdded = this.handleSongAdded.bind(this);
         this.handleSongDissed = this.handleSongDissed.bind(this);
         this.goToMobileDetail = this.goToMobileDetail.bind(this);
+        this.handleDragStart = this.handleDragStart.bind(this);
+        this.handleDrop = this.handleDrop.bind(this);
+        this.handleTouchStart = this.handleTouchStart.bind(this);
+        this.handleTouchEnd = this.handleTouchEnd.bind(this);
     };
 
     // this methods is called by React lifecycle when the
@@ -26,23 +31,6 @@ class Swipe extends Component {
     // that's a good place to call the API and get the data
     componentDidMount() {
 
-        // when data is retrieved we update the state
-        // this will cause the component to re-render
-        /*
-        modelInstance
-            .getAllDishes(this.state.type, this.state.filter)
-            .then(dishes => {
-                this.setState({
-                    status: "LOADED",
-                    dishes: dishes.results
-                });
-            })
-            .catch(() => {
-                this.setState({
-                    status: "ERROR"
-                });
-            });
-            */
     }
 
 
@@ -80,9 +68,10 @@ class Swipe extends Component {
                 break;
             case "REG_VIEW":
                 songCard = (
-                    <div className="col-8 justify-content-center text-center-lg">
-                        <span onClick={this.goToMobileDetail}>
-                        <SwipeCard model={modelInstance} song={this.state.current_song} details={false}/>
+                    <div className="col-8 justify-content-center text-center-lg" onMouseDown={this.handleDragStart}
+                         onMouseUp={this.handleDrop} onTouchStart={this.handleTouchStart} onTouchEnd={this.handleTouchEnd}>
+                        <span onClick={this.goToMobileDetail} >
+                        <SwipeCard className="dragging" model={modelInstance} song={this.state.current_song} details={false}/>
                         </span>
                     </div>
                 );
@@ -95,8 +84,9 @@ class Swipe extends Component {
 
                 songCard = (
                     <div>
-                        <div className="col-12 justify-content-center text-center-lg">
-                            <SwipeCard model={modelInstance} song={this.state.current_song} details={true}/>
+                        <div className="col-12 justify-content-center text-center-lg" onMouseDown={this.handleDragStart}
+                             onMouseUp={this.handleDrop} onTouchStart={this.handleTouchStart} onTouchEnd={this.handleTouchEnd}>
+                            <SwipeCard model={modelInstance} song={this.state.current_song} details={true} id="card-yo"/>
                         </div>
                         <div className="row">
                             <div className="col-6">
@@ -134,15 +124,55 @@ class Swipe extends Component {
         );
     };
 
+    handleDragStart(e) {
+        this.setState({start_pos: e.nativeEvent.clientX});
+        console.log("you're being dragged");
+        //e.dataTransfer.setData("text", e.target.id);
+    }
+
+    handleDrop(e) {
+        let drop_pos = e.nativeEvent.clientX;
+        let moved = 0 + this.state.start_pos - drop_pos;
+        console.log(moved);
+        if (moved < -150) {       // make 2 different if statements, one for mobile (less difference needed) and one for desktop (higher px value)
+            this.handleSongAdded(e)
+        }
+        if (moved > 150) {
+            this.handleSongDissed(e)
+        }
+        this.setState({start_pos: 0});
+    }
+
+    handleTouchStart(e) {
+        let touchList = e.changedTouches;
+        this.setState({start_pos: touchList[0].clientX});
+        console.log("you're being dragged");
+        //e.dataTransfer.setData("text", e.target.id);
+    }
+
+    handleTouchEnd(e) {
+        let touchList = e.changedTouches;
+        let drop_pos = touchList[0].clientX;
+        let moved = 0 + this.state.start_pos - drop_pos;
+        console.log(moved);
+        if (moved < -150) {       // make 2 different if statements, one for mobile (less difference needed) and one for desktop (higher px value)
+            this.handleSongAdded(e)
+        }
+        if (moved > 150) {
+            this.handleSongDissed(e)
+        }
+        this.setState({start_pos: 0});
+    }
+
     handleSongAdded(e) {
         if (this.state.state === "DETAIL_VIEW") {
             this.setState({state: "REG_VIEW"})
         }
+        let playlist_new = this.state.playlist;
+        playlist_new.push(song_list.shift());
+        this.setState({playlist: playlist_new});
+        console.log(this.state.playlist);
         if (this.state.state !== "EMPTY") {
-            let playlist_new = this.state.playlist;
-            playlist_new.push(song_list.shift());
-            this.setState({playlist: playlist_new});
-            console.log(this.state.playlist);
             this.newSong();
             e.preventDefault();
         }
