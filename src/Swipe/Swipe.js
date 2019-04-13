@@ -171,6 +171,7 @@ class Swipe extends Component {
         let playlist_new = this.state.playlist;
         playlist_new.push(song_list.shift());
         this.setState({playlist: playlist_new});
+        modelInstance.addSongToPlaylist(song_list.shift());
         console.log(this.state.playlist);
         if (this.state.state !== "EMPTY") {
             this.newSong();
