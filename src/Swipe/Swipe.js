@@ -76,7 +76,6 @@ class Swipe extends Component {
                         <SwipeCard className="dragging" model={modelInstance} song={this.state.song_list[0]}
                                    details={false}/>
                         </span>
-
                     </div>
                 );
                 break;
@@ -171,14 +170,13 @@ class Swipe extends Component {
     }
 
     handleSongAdded(e) {
-        document.getElementById(this.state.song_list[0].id).pause();
+        //document.getElementById(this.state.song_list[0].id).pause();
         if (this.state.state === "DETAIL_VIEW") {
             this.setState({state: "REG_VIEW"})
         }
-        let playlist_new = this.state.playlist;
-        playlist_new.push(this.state.song_list.shift());
-        this.setState({playlist: playlist_new});
-        console.log(this.state.playlist);
+        this.setState({state: "LOADING"});
+        this.setState({state: "REG_VIEW"});
+        modelInstance.addSongToPlaylist(this.state.song_list.shift());
         if (this.state.state !== "EMPTY") {
             this.newSong();
             e.preventDefault();
@@ -186,7 +184,7 @@ class Swipe extends Component {
     }
 
     handleSongDissed(e) {
-        document.getElementById(this.state.song_list[0].id).pause();
+       // document.getElementById(this.state.song_list[0].id).pause();
         if (this.state.state === "DETAIL_VIEW") {
             this.setState({state: "REG_VIEW"})
         }
