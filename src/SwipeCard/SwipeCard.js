@@ -13,6 +13,8 @@ class SwipeCard extends Component {
 
     render() {
         let song_details = null;
+        console.log(this.props.song);
+
         //console.log(this.props.song);
         switch (this.props.details) {
             case true:
@@ -38,10 +40,9 @@ class SwipeCard extends Component {
                 );
                 break;
         }
-
         return (
             <div className="row swipe-card justify-content-center">
-                <audio autoPlay loop><source src={preview} type="audio/mpeg"/></audio>
+                <audio autoPlay loop id={this.props.song.id}><source src={this.props.song.preview_url} type="audio/mpeg"/></audio>
                 <div className="col-lg-6 col-md-6 col-xs-12">
                     <img className="img-fluid" src={this.props.song.album.images[0].url}/>
                 </div>
