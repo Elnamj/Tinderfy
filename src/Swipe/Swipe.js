@@ -34,9 +34,7 @@ class Swipe extends Component {
         modelInstance.addObserver(this);
     }
 
-
     render() {
-        console.log(this.state.current_song);
         let songCard = null;
         let logo = <LogoHeader model={modelInstance}/>;
         let song_audio = "";
@@ -117,10 +115,10 @@ class Swipe extends Component {
 
         if (this.state.want_sound === true) {
             if (this.state.current_song.preview_url === null) {
-                song_audio = ("a preview of the song is not available :(");
+                song_audio = "a preview of the song is not available :(";
             }
             else {
-                song_audio = (<Sound url={this.state.current_song.preview_url} playStatus={Sound.status.PLAYING} loop={true}/>);
+                //song_audio = (<Sound url={this.state.current_song.preview_url} playStatus={Sound.status.PLAYING} loop={true}/>);
             }
         }
 
@@ -178,8 +176,6 @@ class Swipe extends Component {
         if (this.state.state === "DETAIL_VIEW") {
             this.setState({state: "REG_VIEW"})
         }
-        this.setState({state: "LOADING"});
-        this.setState({state: "REG_VIEW"});
         modelInstance.addSongToPlaylist(this.state.current_song);
         if (this.state.state !== "EMPTY") {
             this.newSong();
@@ -196,10 +192,12 @@ class Swipe extends Component {
     }
 
     newSong() {
-        if (modelInstance.popSearchResults() === null) {
-            this.setState({state: "EMPTY", want_sound: false});
+        let next_song = modelInstance.popSearchResults();
+        console.log(next_song);
+        if (next_song === undefined) {
+            this.setState({want_sound: false, state: "EMPTY"});
         } else {
-            this.setState({current_song: modelInstance.popSearchResults()}, this.componentDidMount);
+            this.setState({current_song: next_song}, this.componentDidMount);
         }
     }
 
@@ -210,7 +208,8 @@ class Swipe extends Component {
     }
 
     update(details) {
-        this.setState({current_song: modelInstance.popSearchResults(), want_sound: true, state: "REG_VIEW"})
+        this.newSong();
+        this.setState({want_sound: true, state: "REG_VIEW"})
     }
 }
 
