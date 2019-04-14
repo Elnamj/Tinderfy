@@ -87,6 +87,12 @@ class Model extends ObservableModel {
         });
     }
 
+    pushPlaylist() {
+      var url = `https://api.spotify.com/v1/search?type=track&market=se&q=`;
+      fetch(url,{method: "POST", this.httpOptions}).then(response => response.json())
+          .catch(this.handleError);
+    }
+
 }
 
 
