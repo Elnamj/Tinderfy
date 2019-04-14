@@ -126,9 +126,16 @@ class Swipe extends Component {
             <div className="Swipe">
                 {logo}
                 {song_audio}
-                <div className="row">
+                <div className="row my-3 justify-content-center d-none d-md-block">
                     {xBtn}
                     {songCard}
+                    {heartBtn}
+                </div>
+                <div className="row my-2 d-md-none justify-content-center">
+                    {songCard}
+                </div>
+                <div className="row py-3 d-md-none justify-content-center">
+                    {xBtn}
                     {heartBtn}
                 </div>
                 <div className="justify-content-center text-center mt-sm-5 mt-lg-3">
