@@ -62,13 +62,6 @@ class Model extends ObservableModel {
         };
     }
 
-
-    getArtistId(name) {
-        const url = `https://api.spotify.com/v1/search?q=${name}&type=artist&limit=1`;
-        return fetch(url, this.httpOptions).then(response => response.json())
-            .catch(this.handleError);
-    }
-
     search(artistName, genre) {
         var url = `https://api.spotify.com/v1/search?type=track&market=se&q=`;
         if (genre !== "") {
@@ -77,39 +70,20 @@ class Model extends ObservableModel {
         if (artistName !== "") {
             url += `artist:${artistName}`;
         }
-        /*
-        if (artistName !== null){
-            this.getArtistId(artistName).then(artist_obj => {
-              console.log(artist_obj.artists.items[0])
-              //const url = `https://api.spotify.com/v1/recommendations?seed_artist=${artist_obj.artists.items[0].id}&seed_genres=${genre}`;var url =`https://api.spotify.com/v1/search?genre:${genre}%20artist:${artistName}&type=track`;
-              this._searchResults= fetch(url, this.httpOptions).then(response => response.json())
-              .catch(this.handleError).then(result => {
-                this._searchResult = result
-                console.log(result)
-              });
-            });
-        }
-        else {
-        */
-        var artistID = "";
-        //const url = `https://api.spotify.com/v1/recommendations?seed_artist=${artistID}&seed_genres=${genre}`;
-        //var url = `https://api.spotify.com/v1/search?q=genre:%22${genre}%22%20artist:${artistName}&type=track&market=se`;
-        console.log(url);
         fetch(url, this.httpOptions).then(response => response.json())
             .catch(this.handleError).then(result => {
-            this._searchResults = result.tracks.items;
-            console.log(this._searchResults);
-            console.log("done")
-        });
-
-    }
-
-    getTrackItem(id) {
-        var song_url = "https://api.spotify.com/v1/tracks/0GjEhVFGZW8afUYGChu3Rr";
-        fetch(song_url, this.httpOptions).then(response => response.json())
-            .catch(this.handleError).then(result => {
-            console.log(result);
-            return result;
+                var songurl = "https://api.spotify.com/v1/tracks/?ids=";
+                console.log(result);
+                result.tracks.items.forEach(function (track) {
+                    var track_id = track.id;
+                    songurl += track_id + ",";
+                });
+            songurl = songurl.substring(0, songurl.length - 1);
+            fetch(songurl, this.httpOptions).then(response => response.json())
+                .catch(this.handleError).then(new_result => {
+                    this._searchResults = new_result;
+                    console.log(new_result)
+            });
         });
     }
 
