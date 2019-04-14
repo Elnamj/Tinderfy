@@ -15,9 +15,7 @@ class SwipeCard extends Component {
     render() {
 
         let song_details = null;
-        console.log(this.props.song);
 
-        //console.log(this.props.song);
         switch (this.props.details) {
             case true:
                 song_details = (
