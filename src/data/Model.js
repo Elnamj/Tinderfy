@@ -67,7 +67,7 @@ class Model extends ObservableModel {
     }
 
     search(artistName, genre) {
-        var url = `https://api.spotify.com/v1/search?type=track&market=se&q=`;
+        var url = `https://api.spotify.com/v1/search?type=track&market=se&limit=50&q=`;
         if (genre !== "") {
             url += `genre:%22${genre}%22%20`;
         }
@@ -90,6 +90,12 @@ class Model extends ObservableModel {
             });
         });
     }
+
+    // pushPlaylist() {
+    //   var url = `https://api.spotify.com/v1/search?type=track&market=se&q=`;
+    //   fetch(url,{method: "POST", this.httpOptions}).then(response => response.json())
+    //       .catch(this.handleError);
+    // }
 
 }
 
