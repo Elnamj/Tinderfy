@@ -24,6 +24,10 @@ class Presentation extends Component {
     };
   }
 
+  // handlePlayList(){
+  //   model.pushPlaylist();
+  // }
+
   render() {
     let songList = null;
     let logo = <LogoHeader model={modelInstance}/>;
@@ -31,13 +35,13 @@ class Presentation extends Component {
     //let song = fetch("https://api.spotify.com/v1/tracks/4y3OI86AEP6PQoDE6olYhO", httpOptions).then(response => response.json())
 
     songList = this.state.playlist.map(song => (
-      <div className="row songRow" key={song.name}>
+      <div className="row songRow" key={song.id}>
         <div className="col-3">
-          <img src={song.albumcover} alt='Cover' height="60" width="60"/>
+          <img src={song.album.images[0].url} alt='Cover' height="60" width="60"/>
         </div>
         <div className="col-9 playlistText">
           <div id="songName">{song.name}</div>
-          <div id="artisName">{song.artist}</div>
+          <div id="artisName">{song.artists[0].name}</div>
         </div>
       </div>
     ));
@@ -55,7 +59,7 @@ class Presentation extends Component {
             </div>
           </div>
           <Link to="/filter">
-            <button id="searchBtn" type="submit" className="btn-lg btn-success form-group">Done</button>
+            <button id="searchBtn" type="submit" className="btn-lg btn-success form-group" onClick={this.handlePlayList}>Done</button>
           </Link>
         </div>
       </div>
