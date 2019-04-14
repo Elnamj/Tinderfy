@@ -5,7 +5,8 @@ import {Router, Link} from 'react-router';
 class Model extends ObservableModel {
     constructor(props) {
         super(props);
-        this._genreList = ["Pop", "hip%20hop", "Jazz", "R&B", "Electronic/Dance", "Rock", "Indie", "Metal", "Country", "Soul", "Classical"];
+        this._genreList = [{list_name: "Pop", q_name: "pop"}, {list_name: "Hip Hop", q_name: "hip%20hop"}, {list_name: "Jazz", q_name: "jazz"}, {list_name: "Electronic/Dance", q_name: "electronic/dance"},
+                           {list_name: "Rock", q_name: "rock"}, {list_name: "Indie", q_name: "indie"}, {list_name: "Metal", q_name: "metal"}, {list_name: "Country", q_name: "country"}, {list_name: "Soul", q_name: "soul"}, {list_name: "Classical", q_name: "classical"}];
         this._searchResults = "";
         this._playlist = [];
         this._playlistName = "";
