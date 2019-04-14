@@ -118,7 +118,7 @@ class Swipe extends Component {
                 song_audio = "a preview of the song is not available :(";
             }
             else {
-                //song_audio = (<Sound url={this.state.current_song.preview_url} playStatus={Sound.status.PLAYING} loop={true}/>);
+                song_audio = (<Sound url={this.state.current_song.preview_url} playStatus={Sound.status.PLAYING} loop={true}/>);
             }
         }
 
