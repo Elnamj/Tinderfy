@@ -1,7 +1,60 @@
-.FirstPage{
+body{
+  margin-right:0px;
+}
+
+/* .FirstPage{
   background-image: url("https://sf2.viepratique.fr/wp-content/uploads/sites/5/2018/10/gettyimages-873431730.jpg");
   height: 100%;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+} */
+
+/* #concert{
+  background-image: url("https://sf2.viepratique.fr/wp-content/uploads/sites/5/2018/10/gettyimages-873431730.jpg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  top: 0;
+  bottom: 0;
+  z-index: -10;
+  margin-bottom:0px;
+  padding: 0;
+} */
+
+#concert-overlay{
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0);
+  top: 25%;
+  bottom: 200px;
+  height: 300px;
+  width: 400px;
+  margin-left: 10%;
+  overflow: hidden;
+  text-align: center;
+}
+
+.logo{
+  z-index: 2;
+}
+
+/* https://www.gradient-animator.com/ */
+.FirstPage{
+  background: linear-gradient(181deg, #ff5864, #000000);
+  background-size: 400% 400%;
+  -moz-animation: AnimationName 22s ease infinite;
+  animation: AnimationName 22s ease infinite;
+}
+
+@-moz-keyframes AnimationName {
+  0%{background-position:0% 17%}
+  50%{background-position:100% 84%}
+  100%{background-position:0% 17%}
+}
+
+@keyframes AnimationName {
+  0%{background-position:0% 17%}
+  50%{background-position:100% 84%}
+  100%{background-position:0% 17%}
 }
