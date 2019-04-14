@@ -66,7 +66,7 @@ class Filter extends Component {
                             <div className="form-group text-left">
                                 <label>Genre</label>
                                 <select id="genreSelect" className="form-control" onChange={this.handleGenre}>
-                                  <option style={{background:"#D4D6D8"}} value="" selected disabled>Click to choose</option>
+                                  <option selected disabled>Click to choose</option>
                                     {this.showGenreList()}
                                 </select>
                             </div>

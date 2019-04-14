@@ -24,9 +24,9 @@ class Presentation extends Component {
     };
   }
 
-  handlePlayList(){
-    model.pushPlaylist();
-  }
+  // handlePlayList(){
+  //   model.pushPlaylist();
+  // }
 
   render() {
     let songList = null;
@@ -37,11 +37,11 @@ class Presentation extends Component {
     songList = this.state.playlist.map(song => (
       <div className="row songRow" key={song.id}>
         <div className="col-3">
-          <img src={song.albumcover} alt='Cover' height="60" width="60"/>
+          <img src={song.album.images[0].url} alt='Cover' height="60" width="60"/>
         </div>
         <div className="col-9 playlistText">
           <div id="songName">{song.name}</div>
-          <div id="artisName">{song.artist}</div>
+          <div id="artisName">{song.artists[0].name}</div>
         </div>
       </div>
     ));
