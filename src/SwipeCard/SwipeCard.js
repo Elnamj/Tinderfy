@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import {Link} from "react-router-dom";
 import modelInstance from "../data/Model";
 import "./SwipeCard.css";
+import Sound from "react-sound";
 
 var preview = "https://p.scdn.co/mp3-preview/3eb16018c2a700240e9dfb8817b6f2d041f15eb1?cid=774b29d4f13844c495f206cafdad9c86";
 
@@ -12,6 +13,7 @@ class SwipeCard extends Component {
     }
 
     render() {
+
         let song_details = null;
         console.log(this.props.song);
 
@@ -42,7 +44,6 @@ class SwipeCard extends Component {
         }
         return (
             <div className="row swipe-card justify-content-center">
-                <audio autoPlay loop id={this.props.song.id}><source src={this.props.song.preview_url} type="audio/mpeg"/></audio>
                 <div className="col-lg-6 col-md-6 col-xs-12">
                     <img className="img-fluid" src={this.props.song.album.images[0].url}/>
                 </div>
