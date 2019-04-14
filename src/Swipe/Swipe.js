@@ -4,7 +4,7 @@ import modelInstance from "../data/Model";
 import LogoHeader from "../LogoHeader/LogoHeader";
 import "./Swipe.css";
 import SwipeCard from "../SwipeCard/SwipeCard";
-
+import Sound from "react-sound";
 
 class Swipe extends Component {
     constructor(props) {
@@ -37,7 +37,7 @@ class Swipe extends Component {
     render() {
         let songCard = null;
         let logo = <LogoHeader model={modelInstance}/>;
-        let song_mp3 = "";
+        let song_audio = "";
         let heartBtn = (
             <div className="col-2">
                 <img className="h-75 w-75 img-fluid d-block mx-auto" src={require("../images/fave.svg")}
@@ -68,6 +68,7 @@ class Swipe extends Component {
                 );
                 break;
             case "REG_VIEW":
+                song_audio = (<Sound url={this.state.song_list[0].preview_url} playStatus={Sound.status.PLAYING}/>);
                 songCard = (
                     <div className="col-8 justify-content-center text-center-lg" onMouseDown={this.handleDragStart}
                          onMouseUp={this.handleDrop} onTouchStart={this.handleTouchStart}
@@ -84,6 +85,7 @@ class Swipe extends Component {
                 heartBtn = null;
                 xBtn = null;
                 createBtn = null;
+                song_audio = (<Sound url={this.state.song_list[0].preview_url} playStatus={Sound.status.PLAYING}/>);
 
                 songCard = (
                     <div>
@@ -117,6 +119,7 @@ class Swipe extends Component {
         return (
             <div className="Swipe">
                 {logo}
+                {song_audio}
                 <div className="row">
                     {xBtn}
                     {songCard}
@@ -170,7 +173,7 @@ class Swipe extends Component {
     }
 
     handleSongAdded(e) {
-        //document.getElementById(this.state.song_list[0].id).pause();
+        //document.getElementById(this.state.song_list[0].id).setAttribute('muted', 'true');
         if (this.state.state === "DETAIL_VIEW") {
             this.setState({state: "REG_VIEW"})
         }
@@ -184,7 +187,7 @@ class Swipe extends Component {
     }
 
     handleSongDissed(e) {
-       // document.getElementById(this.state.song_list[0].id).pause();
+        //document.getElementById(this.state.song_list[0].id).setAttribute('muted', 'true');
         if (this.state.state === "DETAIL_VIEW") {
             this.setState({state: "REG_VIEW"})
         }

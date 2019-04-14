@@ -8,6 +8,7 @@
     "react-dom": "^16.1.0",
     "react-router-dom": "^5.0.0",
     "react-scripts": "1.0.17",
+    "react-sound": "^1.2.0",
     "spotify-web-api-js": "^1.2.0"
   },
   "scripts": {
