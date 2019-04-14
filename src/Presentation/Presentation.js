@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import modelInstance from "../data/Model";
+import LogoHeader from "../LogoHeader/LogoHeader";
 import "./Presentation.css";
 
 const httpOptions = {
@@ -25,6 +26,7 @@ class Presentation extends Component {
 
   render() {
     let songList = null;
+    let logo = <LogoHeader model={modelInstance}/>;
 
     //let song = fetch("https://api.spotify.com/v1/tracks/4y3OI86AEP6PQoDE6olYhO", httpOptions).then(response => response.json())
 
@@ -42,6 +44,7 @@ class Presentation extends Component {
 
     return (
       <div className="Presentation">
+        {logo}
         <div className="row-sm-12 row-lg-12 py-lg-5 my-lg-5" align="center">
           <div className="blackBorder backgroundForm col-lg-3 col-sm-12">
             <div>
@@ -51,7 +54,9 @@ class Presentation extends Component {
               </form>
             </div>
           </div>
-          <button id="searchBtn" type="submit" className="btn-lg btn-success form-group">Share</button>
+          <Link to="/filter">
+            <button id="searchBtn" type="submit" className="btn-lg btn-success form-group">Done</button>
+          </Link>
         </div>
       </div>
     );
