@@ -22,7 +22,7 @@ class SwipeCard extends Component {
                     <div>
                         <div className="row border-bottom p-2">
                             <h2 className="col-12">{this.props.song.name}</h2>
-                            <h3 className="col-12 font-italic text-dark"> {this.props.song.artists[0].name}</h3>
+                            <h3 className="col-12 font-italic text-secondary"> {this.props.song.artists[0].name}</h3>
                         </div>
                         <div className="my-4">
                             <h5 className="m-2">Album: {this.props.song.album.name}</h5>
@@ -41,7 +41,7 @@ class SwipeCard extends Component {
                 break;
         }
         return (
-            <div className="row swipe-card justify-content-center shadow-sm py-2 bg-white">
+            <div className="row swipe-card justify-content-center shadow-lg py-2 bg-white">
                 <div className="col-lg-6 col-md-6 col-xs-12">
                     <img className="img-fluid" src={this.props.song.album.images[0].url}/>
                 </div>
