@@ -86,7 +86,7 @@ class Presentation extends Component {
         </div>
         <div className="row justify-content-center">
           <Link to="/filter">
-            <button id="searchBtn" type="submit" className="btn btn-lg btn-success form-group" onClick={this.handlePlayList}>Done</button>
+            <button id="searchBtn" type="submit" className="btn btn-lg btn-success form-group" onClick={this.handlePlayList}>Save</button>
           </Link>
         </div>
       </div>
