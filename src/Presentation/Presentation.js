@@ -48,15 +48,15 @@ class Presentation extends Component {
 
     songList = this.state.playlist.map(song => (
       <div className="row songRow" id={song.id}>
-        <div className="col-2">
+        <div className="col-lg-2 col-sm-3">
           <img src={song.album.images[0].url} alt='Cover' height="60" width="60"/>
         </div>
-        <div className="col-9 playlistText">
+        <div className="col-lg-9 col-sm-5 playlistText">
           <div id="songName">{song.name}</div>
           <div id="artisName">{song.artists[0].name}</div>
         </div>
-        <div className="col-1">
-          <button type='button' className='btn-danger btn-md' id='removeButton' onClick={() => {this.removeFromPlaylist(song.id)}}>-</button>
+        <div className="col-lg-1 col-sm-4">
+          <button type='button' className='btn-danger' id='removeButton' onClick={() => {this.removeFromPlaylist(song.id)}}>-</button>
         </div>
       </div>
     ));
