@@ -16,7 +16,14 @@ class Swipe extends Component {
             playlist: [],
             mobile: window.innerWidth <= 500,
             start_pos: 0,
-            want_sound: false
+            want_sound: false,
+            active: false,
+            currentX: "",
+            currentY: "",
+            initialX: "",
+            initialY: "",
+            xOffset: 0,
+            yOffset: 0
         };
         this.handleSongAdded = this.handleSongAdded.bind(this);
         this.handleSongDissed = this.handleSongDissed.bind(this);
@@ -25,6 +32,8 @@ class Swipe extends Component {
         this.handleDrop = this.handleDrop.bind(this);
         this.handleTouchStart = this.handleTouchStart.bind(this);
         this.handleTouchEnd = this.handleTouchEnd.bind(this);
+        this.dragging = this.dragging.bind(this);
+        this.touching = this.touching.bind(this);
     };
 
     // this methods is called by React lifecycle when the
@@ -70,8 +79,8 @@ class Swipe extends Component {
             case "REG_VIEW":
                 songCard = (
                     <div className="col-8 justify-content-center text-center-lg" onMouseDown={this.handleDragStart}
-                         onMouseUp={this.handleDrop} onTouchStart={this.handleTouchStart}
-                         onTouchEnd={this.handleTouchEnd}>
+                         onMouseUp={this.handleDrop} onMouseMove={this.dragging} onTouchMove={this.touching} onTouchStart={this.handleTouchStart}
+                         onTouchEnd={this.handleTouchEnd} id="card-yo">
                         <span onClick={this.goToMobileDetail}>
                         <SwipeCard className="dragging" model={modelInstance} song={this.state.current_song}
                                    details={false}/>
@@ -86,10 +95,8 @@ class Swipe extends Component {
                 createBtn = null;
                 songCard = (
                     <div>
-                        <div className="col-12 justify-content-center text-center-lg" onMouseDown={this.handleDragStart}
-                             onMouseUp={this.handleDrop} onTouchStart={this.handleTouchStart}
-                             onTouchEnd={this.handleTouchEnd}>
-                            <SwipeCard model={modelInstance} song={this.state.current_song} details={true} id="card-yo"/>
+                        <div className="col-12 justify-content-center text-center-lg">
+                            <SwipeCard model={modelInstance} song={this.state.current_song} details={true}/>
                         </div>
                         <div className="row">
                             <div className="col-6">
@@ -126,7 +133,7 @@ class Swipe extends Component {
             <div className="Swipe">
                 {logo}
                 {song_audio}
-                <div className="row my-3 justify-content-center d-none d-md-block">
+                <div className="row my-3 justify-content-center d-none d-md-flex">
                     {xBtn}
                     {songCard}
                     {heartBtn}
@@ -146,27 +153,30 @@ class Swipe extends Component {
     };
 
     handleDragStart(e) {
-        this.setState({start_pos: e.nativeEvent.clientX});
+        this.setState({start_pos: e.nativeEvent.clientX, initialX: e.nativeEvent.clientX - this.state.xOffset, initialY: e.nativeEvent.clientY - this.state.yOffset, active: true});
     }
 
     handleDrop(e) {
         let drop_pos = e.nativeEvent.clientX;
         let moved = 0 + this.state.start_pos - drop_pos;
+        //this.setTranslate(e.nativeEvent.clientX - this.state.xOffset, e.nativeEvent.clientY - this.state.yOffset, e.target);
         if (moved < -150) {       // make 2 different if statements, one for mobile (less difference needed) and one for desktop (higher px value)
             this.handleSongAdded(e)
         }
         if (moved > 150) {
             this.handleSongDissed(e)
         }
-        this.setState({start_pos: 0});
+        this.setState({start_pos: 0, active: false});
     }
 
     handleTouchStart(e) {
         let touchList = e.changedTouches;
-        this.setState({start_pos: touchList[0].clientX});
+        console.log("touch start");
+        this.setState({start_pos: touchList[0].clientX, initialX: touchList[0].clientX - this.state.xOffset, initialY: touchList[0].clientY - this.state.yOffset, active: true});
     }
 
     handleTouchEnd(e) {
+        console.log("touch end");
         let touchList = e.changedTouches;
         let drop_pos = touchList[0].clientX;
         let moved = 0 + this.state.start_pos - drop_pos;
@@ -176,7 +186,37 @@ class Swipe extends Component {
         if (moved > 150) {
             this.handleSongDissed(e)
         }
-        this.setState({start_pos: 0});
+        this.setState({start_pos: 0, active: false});
+    }
+
+    touching(e) {
+        e.preventDefault();
+        console.log("touch drag");
+        if (this.state.active) {
+            console.log(e.changedTouches.touches[0].clientX - this.state.initialX);
+            this.setTranslate(e.touches[0].clientX - this.state.initialX, e.touches[0].clientY - this.state.initialY, document.getElementById("card-yo"));
+        }
+    }
+
+    dragging(e) {
+        if (this.state.active) {
+
+            e.preventDefault();
+
+            if (e.type === "touchmove") {
+                console.log("touchyy");
+                this.setState({currentX: e.touches[0].clientX - this.state.initialX, currentY: e.touches[0].clientY - this.state.initialY});
+            } else {
+                this.setState({currentX: e.clientX - this.state.initialX, currentY: e.clientY - this.state.initialY});
+            }
+            this.setState({xOffset: this.state.currentX, yOffset: this.state.currentY});
+
+            this.setTranslate(this.state.currentX, this.state.currentY, document.getElementById("card-yo"));
+        }
+    }
+
+    setTranslate(xPos, yPos, el){
+        el.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
     }
 
     handleSongAdded(e) {
