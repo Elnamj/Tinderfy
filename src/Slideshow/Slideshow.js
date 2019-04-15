@@ -5,7 +5,7 @@ import "./Slideshow.css";
 class Slideshow extends Component {
   render() {
     return (
-      <div className="Slideshow">
+      <div className="Slideshow py-5">
             <section className="slides">
               <div className="content">
                 <div className="carrousel">

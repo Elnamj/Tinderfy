@@ -1,5 +1,5 @@
 .welcome-buttons{
-  position: absolute;
+  position: relative;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -7,7 +7,6 @@
 
 .btn{
   position: relative;
-  display: block;
   color: #1DB954;
   font-size: 17px;
   text-decoration: none;
@@ -16,7 +15,6 @@
   text-transform: uppercase;
   transition: 1s all ease;
   overflow: hidden;
-  margin: 10px;
   border-radius: 50px 50px 50px 50px;
 }
 
@@ -57,11 +55,5 @@
 
 p{
   color: white;
-  margin: 50px;
-  margin-top: 0px;
-  text-decoration: none;
 }
 
-.logo{
-
-}

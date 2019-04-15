@@ -1,5 +1,14 @@
 body{
-  margin-right:0px;
+  font-family: 'Poppins', sans-serif;
+}
+.tinderfy-logo-md {
+  height: 100px;
+  object-fit: contain;
+}
+
+.tinderfy-logo-xs {
+  height: 70px;
+  object-fit: contain;
 }
 
 /* .FirstPage{

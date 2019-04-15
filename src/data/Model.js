@@ -43,6 +43,10 @@ class Model extends ObservableModel {
         console.log(this._playlist);
     }
 
+    popSearchResults() {
+        return this._searchResults.shift();
+    }
+
     getHashParams() {
         var hashParams = {};
         var e, r = /([^&;=]+)=?([^&;]*)/g,

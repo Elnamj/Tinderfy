@@ -12,10 +12,11 @@ class Swipe extends Component {
 
         this.state = {
             state: "LOADING",
-            song_list: [],
+            current_song: "",
             playlist: [],
             mobile: window.innerWidth <= 500,
             start_pos: 0,
+            want_sound: false
         };
         this.handleSongAdded = this.handleSongAdded.bind(this);
         this.handleSongDissed = this.handleSongDissed.bind(this);
@@ -32,7 +33,6 @@ class Swipe extends Component {
     componentDidMount() {
         modelInstance.addObserver(this);
     }
-
 
     render() {
         let songCard = null;
@@ -68,13 +68,12 @@ class Swipe extends Component {
                 );
                 break;
             case "REG_VIEW":
-                song_audio = (<Sound url={this.state.song_list[0].preview_url} playStatus={Sound.status.PLAYING}/>);
                 songCard = (
                     <div className="col-8 justify-content-center text-center-lg" onMouseDown={this.handleDragStart}
                          onMouseUp={this.handleDrop} onTouchStart={this.handleTouchStart}
                          onTouchEnd={this.handleTouchEnd}>
                         <span onClick={this.goToMobileDetail}>
-                        <SwipeCard className="dragging" model={modelInstance} song={this.state.song_list[0]}
+                        <SwipeCard className="dragging" model={modelInstance} song={this.state.current_song}
                                    details={false}/>
                         </span>
                     </div>
@@ -85,14 +84,12 @@ class Swipe extends Component {
                 heartBtn = null;
                 xBtn = null;
                 createBtn = null;
-                song_audio = (<Sound url={this.state.song_list[0].preview_url} playStatus={Sound.status.PLAYING}/>);
-
                 songCard = (
                     <div>
                         <div className="col-12 justify-content-center text-center-lg" onMouseDown={this.handleDragStart}
                              onMouseUp={this.handleDrop} onTouchStart={this.handleTouchStart}
                              onTouchEnd={this.handleTouchEnd}>
-                            <SwipeCard model={modelInstance} song={this.state.song_list[0]} details={true} id="card-yo"/>
+                            <SwipeCard model={modelInstance} song={this.state.current_song} details={true} id="card-yo"/>
                         </div>
                         <div className="row">
                             <div className="col-6">
@@ -116,13 +113,29 @@ class Swipe extends Component {
                 break;
         }
 
+        if (this.state.want_sound === true) {
+            if (this.state.current_song.preview_url === null) {
+                song_audio = "a preview of the song is not available :(";
+            }
+            else {
+                song_audio = (<Sound url={this.state.current_song.preview_url} playStatus={Sound.status.PLAYING} loop={true}/>);
+            }
+        }
+
         return (
             <div className="Swipe">
                 {logo}
                 {song_audio}
-                <div className="row">
+                <div className="row my-3 justify-content-center d-none d-md-block">
                     {xBtn}
                     {songCard}
+                    {heartBtn}
+                </div>
+                <div className="row my-2 d-md-none justify-content-center">
+                    {songCard}
+                </div>
+                <div className="row py-3 d-md-none justify-content-center">
+                    {xBtn}
                     {heartBtn}
                 </div>
                 <div className="justify-content-center text-center mt-sm-5 mt-lg-3">
@@ -134,14 +147,11 @@ class Swipe extends Component {
 
     handleDragStart(e) {
         this.setState({start_pos: e.nativeEvent.clientX});
-        console.log("you're being dragged");
-        //e.dataTransfer.setData("text", e.target.id);
     }
 
     handleDrop(e) {
         let drop_pos = e.nativeEvent.clientX;
         let moved = 0 + this.state.start_pos - drop_pos;
-        console.log(moved);
         if (moved < -150) {       // make 2 different if statements, one for mobile (less difference needed) and one for desktop (higher px value)
             this.handleSongAdded(e)
         }
@@ -154,15 +164,12 @@ class Swipe extends Component {
     handleTouchStart(e) {
         let touchList = e.changedTouches;
         this.setState({start_pos: touchList[0].clientX});
-        console.log("you're being dragged");
-        //e.dataTransfer.setData("text", e.target.id);
     }
 
     handleTouchEnd(e) {
         let touchList = e.changedTouches;
         let drop_pos = touchList[0].clientX;
         let moved = 0 + this.state.start_pos - drop_pos;
-        console.log(moved);
         if (moved < -150) {       // make 2 different if statements, one for mobile (less difference needed) and one for desktop (higher px value)
             this.handleSongAdded(e)
         }
@@ -173,13 +180,10 @@ class Swipe extends Component {
     }
 
     handleSongAdded(e) {
-        //document.getElementById(this.state.song_list[0].id).setAttribute('muted', 'true');
         if (this.state.state === "DETAIL_VIEW") {
             this.setState({state: "REG_VIEW"})
         }
-        this.setState({state: "LOADING"});
-        this.setState({state: "REG_VIEW"});
-        modelInstance.addSongToPlaylist(this.state.song_list.shift());
+        modelInstance.addSongToPlaylist(this.state.current_song);
         if (this.state.state !== "EMPTY") {
             this.newSong();
             e.preventDefault();
@@ -187,21 +191,20 @@ class Swipe extends Component {
     }
 
     handleSongDissed(e) {
-        //document.getElementById(this.state.song_list[0].id).setAttribute('muted', 'true');
         if (this.state.state === "DETAIL_VIEW") {
             this.setState({state: "REG_VIEW"})
         }
-        this.state.song_list.shift();
         this.newSong();
         e.preventDefault();
     }
 
     newSong() {
-        if (this.state.song_list.length === 0) {
-            this.setState({state: "EMPTY"});
+        let next_song = modelInstance.popSearchResults();
+        console.log(next_song);
+        if (next_song === undefined) {
+            this.setState({want_sound: false, state: "EMPTY"});
         } else {
-            this.setState({switch_song: true});
-            this.setState({current_song: this.state.song_list[0]}, this.componentDidMount);
+            this.setState({current_song: next_song}, this.componentDidMount);
         }
     }
 
@@ -212,13 +215,8 @@ class Swipe extends Component {
     }
 
     update(details) {
-        console.log("update called");
-        if (details === 'search_done') {
-            console.log("yeah eayh");
-            this.setState({song_list: modelInstance.getSearchResults(), state: "REG_VIEW"})
-        }
-        console.log("yeah eayh");
-        this.setState({song_list: modelInstance.getSearchResults(), state: "REG_VIEW"})
+        this.newSong();
+        this.setState({want_sound: true, state: "REG_VIEW"})
     }
 }
 

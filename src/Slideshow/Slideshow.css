@@ -1,9 +1,6 @@
 .slides{
-  margin: 0px;
-  padding-top: 10px;
   height: 700px;
   box-sizing: border-box;
-  margin-left: 30%;
 }
 
 .content{
@@ -28,7 +25,6 @@
   border: 1px solid #000000;
   overflow: hidden;
   position: absolute;
-  margin-left: 25%;
 }
 
 .carrousel :nth-child(1){
@@ -90,7 +86,3 @@
   }
 }
 
-
-#login-btn{
-  margin-top: 0px;
-}

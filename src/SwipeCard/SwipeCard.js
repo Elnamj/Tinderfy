@@ -15,9 +15,7 @@ class SwipeCard extends Component {
     render() {
 
         let song_details = null;
-        console.log(this.props.song);
 
-        //console.log(this.props.song);
         switch (this.props.details) {
             case true:
                 song_details = (
@@ -43,7 +41,7 @@ class SwipeCard extends Component {
                 break;
         }
         return (
-            <div className="row swipe-card justify-content-center">
+            <div className="row swipe-card justify-content-center shadow-sm py-2">
                 <div className="col-lg-6 col-md-6 col-xs-12">
                     <img className="img-fluid" src={this.props.song.album.images[0].url}/>
                 </div>
