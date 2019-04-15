@@ -5,8 +5,9 @@ import {Router, Link} from 'react-router';
 class Model extends ObservableModel {
     constructor(props) {
         super(props);
-        this._genreList = [{list_name: "Pop", q_name: "pop"}, {list_name: "Hip Hop", q_name: "hip%20hop"}, {list_name: "Jazz", q_name: "jazz"}, {list_name: "Electronic/Dance", q_name: "edm"},
-                           {list_name: "Rock", q_name: "rock"}, {list_name: "Indie", q_name: "indie"}, {list_name: "Metal", q_name: "metal"}, {list_name: "Country", q_name: "country"}, {list_name: "Soul", q_name: "soul"}, {list_name: "Classical", q_name: "classical"}];
+        this._genreList = [{list_name: "Pop", q_name: "pop"}, {list_name: "Hip Hop", q_name: "hip hop"}, {list_name: "Jazz", q_name: "jazz"}, {list_name: "Electronic/Dance", q_name: "edm"},
+                           {list_name: "Rock", q_name: "rock"}, {list_name: "Indie", q_name: "indie"}, {list_name: "Metal", q_name: "metal"}, {list_name: "Country", q_name: "country"}, {list_name: "Soul", q_name: "soul"},
+                           {list_name: "Classical", q_name: "classical"}, {list_name: "Happy", q_name: "happy"}, {list_name: "Romantic", q_name: "romantic"}];
         this._searchResults = "";
         this._playlist = [];
         this._playlistName = "";
@@ -84,22 +85,24 @@ class Model extends ObservableModel {
         if (artistName !== "") {
             url += `artist:${artistName}`;
         }
-        fetch(url, this.httpOptions).then(response => response.json())
-            .catch(this.handleError).then(result => {
-                var songurl = "https://api.spotify.com/v1/tracks/?ids=";
-                result.tracks.items.forEach(function (track) {
-                    var track_id = track.id;
-                    songurl += track_id + ",";
-                });
-            songurl = songurl.substring(0, songurl.length - 1);
-            fetch(songurl, this.httpOptions).then(response => response.json())
-                .catch(this.handleError).then(new_result => {
-                    this._searchResults = new_result.tracks;
-                    console.log(this._searchResults);
-                    this.notifyObservers("search_done");
+        fetch(url, this.httpOptions)
+          .then(response => response.json())
+          .catch(this.handleError).then(result => {
+            var songurl = "https://api.spotify.com/v1/tracks/?ids=";
+            result.tracks.items.forEach(function (track) {
+                var track_id = track.id;
+                songurl += track_id + ",";
             });
-        });
-    }
+            songurl = songurl.substring(0, songurl.length - 1);
+            fetch(songurl, this.httpOptions)
+            .then(response => response.json())
+            .catch(this.handleError).then(new_result => {
+              this._searchResults = new_result.tracks;
+              console.log(this._searchResults);
+              this.notifyObservers("search_done");
+            });
+          });
+        }
 
     pushPlaylist = () => {
        var url1= `https://api.spotify.com/v1/me`;
@@ -140,14 +143,18 @@ class Model extends ObservableModel {
     }
 
     handleError(error) {
-    if (error.json) {
-      error.json().then(error => {
+      if (error.json) {
+        error.json().then(error => {
+          console.error("API Error:", error.message || error);
+        });
+      } else {
         console.error("API Error:", error.message || error);
-      });
-    } else {
-      console.error("API Error:", error.message || error);
+        }
     }
-  }
+
+    emptyPlaylist() {
+      this._playlist = [];
+    }
 
 }
 
