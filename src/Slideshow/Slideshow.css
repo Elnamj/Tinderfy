@@ -14,7 +14,7 @@
   margin-top: 10%;
   width: 100%;
   position: relative;
-  /* float: right; */
+  float: right;
    -webkit-animation: rotating 15s infinite linear;
   transform-style: preserve-3d;
 }
@@ -22,7 +22,6 @@
 .carrousel figure{
   width: 150px;
   height: 150px;
-  border: 1px solid #000000;
   overflow: hidden;
   position: absolute;
 }
@@ -85,4 +84,3 @@
     transform:rotateY(360deg);
   }
 }
-

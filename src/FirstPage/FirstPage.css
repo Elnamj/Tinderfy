@@ -51,9 +51,10 @@ body{
 /* https://www.gradient-animator.com/ */
 body{
   background: linear-gradient(181deg, #ff5864, #000000);
-  background-size: 200% 200%;
+  background-size: 400% 400%;
   -moz-animation: AnimationName 22s ease infinite;
   animation: AnimationName 22s ease infinite;
+  overflow: hidden;
 }
 
 @-moz-keyframes AnimationName {
