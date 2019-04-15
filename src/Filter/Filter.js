@@ -77,7 +77,7 @@ class Filter extends Component {
                                 </div>
                             </div>
                             <Link to="/swipe">
-                              <button id="searchBtn" type="submit" className="btn btn-success form-group btn1" onClick={this.handleSubmit} disabled={!((this.state.genre !== '' || this.state.artist !== '') && this.state.playlistName !== '')}>Start Matching</button>
+                              <button id="searchBtn" type="submit" className="btn cool-btn form-group btn1" onClick={this.handleSubmit} disabled={!((this.state.genre !== '' || this.state.artist !== '') && this.state.playlistName !== '')}>Start</button>
                             </Link>
                         </form>
                     </div>

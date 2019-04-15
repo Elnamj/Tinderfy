@@ -51,7 +51,7 @@ class Swipe extends Component {
             </div>
         );
         let createBtn = <Link to="/presentation">
-            <button className="btn btn-success greenBtn">Done</button>
+            <button className="btn cool-btn btn1">Done</button>
         </Link>;
 
         switch (this.state.state) {
