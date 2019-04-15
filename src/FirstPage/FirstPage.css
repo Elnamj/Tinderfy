@@ -49,9 +49,9 @@ body{
 }
 
 /* https://www.gradient-animator.com/ */
-.FirstPage{
+body{
   background: linear-gradient(181deg, #ff5864, #000000);
-  background-size: 400% 400%;
+  background-size: 200% 200%;
   -moz-animation: AnimationName 22s ease infinite;
   animation: AnimationName 22s ease infinite;
 }
