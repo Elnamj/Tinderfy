@@ -34,7 +34,7 @@ class FirstPage extends Component {
                             <Welcome model={this.props.model}/>
                         </div>
                     </div>
-                    <div className="col-6 col-xs-12 py-md-5 d-none d-md-block" id="slideshow">
+                    <div className="col-6 col-xs-12 py-md-5 d-none d-lg-block" id="slideshow">
                         <Slideshow model={this.props.model}/>
                     </div>
                 </div>

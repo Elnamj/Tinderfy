@@ -50,7 +50,7 @@ class Filter extends Component {
         return (
             <div className="row-sm-12 row-lg-12 py-lg-2 my-lg-2" align="center">
               {logo}
-                <div className="blackBorder backgroundForm col-lg-3 col-sm-12">
+                <div className="blackBorder backgroundForm col-lg-3 col-sm-12 mt-3">
                     <div>
                         <h3 align="center" className="my-2">Create Playlist</h3>
                         <form onSubmit={this.handleSubmit}>
