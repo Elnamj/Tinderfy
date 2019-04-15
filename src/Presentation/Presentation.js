@@ -4,16 +4,6 @@ import modelInstance from "../data/Model";
 import LogoHeader from "../LogoHeader/LogoHeader";
 import "./Presentation.css";
 
-const httpOptions = {
-  headers: {
-    "X-Mashable-Key": "",
-    method: "GET",
-    /*headers: {
-      Authorization: `Bearer ${userAccessToken}`
-    }*/
-  }
-}
-
 class Presentation extends Component {
   constructor(props) {
     super(props);
@@ -26,18 +16,22 @@ class Presentation extends Component {
   }
 
   componentDidMount() {
-      modelInstance.addObserver(this);
+    modelInstance.addObserver(this);
   }
 
-  // handlePlayList(){
-  //   model.pushPlaylist();
-  // }
+  handlePlayList = () => {
+    modelInstance.pushPlaylist();
+  }
 
   removeFromPlaylist(id){
-  this.props.model.removeSongFromPlaylist(id);
-  this.setState({
-    playlist: this.props.model.getPlaylist()
-  });
+    this.props.model.removeSongFromPlaylist(id);
+    this.setState({
+      playlist: this.props.model.getPlaylist()
+    });
+  }
+
+  cancelPlayList = () => {
+    modelInstance.emptyPlaylist();
   }
 
   render() {
@@ -86,7 +80,10 @@ class Presentation extends Component {
         </div>
         <div className="row justify-content-center">
           <Link to="/filter">
-            <button id="searchBtn" type="submit" className="btn btn-lg btn-success form-group" onClick={this.handlePlayList}>Save</button>
+            <button id="searchBtn" type="submit" className="btn btn-lg cool-btn btn1 form-group" onClick={this.handlePlayList} disabled={(this.state.playlist === [])}>Save & Start Over</button>
+          </Link>
+          <Link to="/filter">
+            <button id="searchBtn2" type="submit" className="btn btn-lg cool-btn btn1 form-group" onClick={this.cancelPlayList}>Cancel</button>
           </Link>
         </div>
       </div>
