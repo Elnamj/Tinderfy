@@ -25,7 +25,7 @@ class FirstPage extends Component {
                             <h1 className="display-4 d-md-none text-white">Tinderfy</h1>
                             <img className="tinderfy-logo-xs d-md-none" src={require("../images/logo.png")} alt="tinderfy logo"/>
                         </div>
-                        <div className="row py-3 py-md-4 px-1">
+                        <div className="row py-3 py-md-4 px-1 text-white">
                             <p>Welcome to Tinderfy, the website of your dreams that lets you create custom Spotify
                                 playlists with only music that you love! Sounds fun right? Check out the guide or get started right away by clicking one of the buttons below!
                             </p>
@@ -34,7 +34,7 @@ class FirstPage extends Component {
                             <Welcome model={this.props.model}/>
                         </div>
                     </div>
-                    <div className="col-6 col-xs-12 py-md-5 d-none d-md-block" id="slideshow">
+                    <div className="col-6 col-xs-12 py-md-5 d-none d-lg-block" id="slideshow">
                         <Slideshow model={this.props.model}/>
                     </div>
                 </div>

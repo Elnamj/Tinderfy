@@ -8,6 +8,7 @@ import Swipe from "./Swipe/Swipe";
 import LogoHeader from "./LogoHeader/LogoHeader";
 import FirstPage from "./FirstPage/FirstPage";
 import Testing from "./testing/testing";
+import Guide from "./Guide/Guide";
 
 class App extends Component {
   constructor() {
@@ -36,6 +37,7 @@ class App extends Component {
               render={() => <Swipe model={model} />}
           />
           <Route exact path="/" component={FirstPage} />
+
           <Route
             path="/FirstPage"
             render={() => <FirstPage model={model} />}
@@ -43,6 +45,10 @@ class App extends Component {
           <Route
             path="/testing"
             render={() => <Testing model={model} />}
+          />
+          <Route
+              path="/guide"
+              render={() => <Guide model={model} />}
           />
         </header>
       </div>
