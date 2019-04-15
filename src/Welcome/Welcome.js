@@ -11,13 +11,13 @@ class Welcome extends Component {
             {/* <a href="https://tinderfy-backend.herokuapp.com/login" > */}
             <div className="col-6">
                 <Link to="/swipe">
-                <button className="btn" id="btn1">Guide</button>
+                <button className="btn btn1" id="btn1">Guide</button>
                 </Link>
             </div>
             {/* <a href="https://tinderfy-backend.herokuapp.com/login" > */}
           <div className="col-6">
              <a href="http://localhost:8888/login">
-             <button className="btn" id="btn2">Get started</button>
+             <button className="btn btn2" id="btn2">Get started</button>
              </a>
           </div>
         </div>
