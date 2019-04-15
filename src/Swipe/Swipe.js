@@ -40,14 +40,14 @@ class Swipe extends Component {
         let song_audio = "";
         let heartBtn = (
             <div className="col-2">
-                <img className="h-75 w-75 img-fluid d-block mx-auto" src={require("../images/fave.svg")}
+                <img className="img-fluid d-block mx-auto icon" src={require("../images/fave.png")}
                      onClick={this.handleSongAdded}/>
             </div>
         );
         let xBtn = (
             <div className="col-2">
-                <img className="h-75 w-75 img-fluid d-block mx-auto"
-                     src={require("../images/thankunext.svg")} onClick={this.handleSongDissed}/>
+                <img className="img-fluid d-block mx-auto icon"
+                     src={require("../images/thankunext.png")} onClick={this.handleSongDissed}/>
             </div>
         );
         let createBtn = <Link to="/presentation">
@@ -93,11 +93,11 @@ class Swipe extends Component {
                         </div>
                         <div className="row">
                             <div className="col-6">
-                                <img className="h-75 w-75 img-fluid d-block mx-auto"
-                                     src={require("../images/thankunext.svg")} onClick={this.handleSongDissed}/>
+                                <img className="img-fluid d-block mx-auto icon"
+                                     src={require("../images/thankunext.png")} onClick={this.handleSongDissed}/>
                             </div>
                             <div className="col-6">
-                                <img className="h-75 w-75 img-fluid d-block mx-auto" src={require("../images/fave.svg")}
+                                <img className="img-fluid d-block mx-auto icon" src={require("../images/fave.png")}
                                      onClick={this.handleSongAdded}/>
                             </div>
                         </div>
