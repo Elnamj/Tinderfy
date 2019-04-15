@@ -1,9 +1,3 @@
-body{
-  background-image: url("https://images.pexels.com/photos/1805895/pexels-photo-1805895.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
 .playlistText{
   color: rgb(255, 255, 255);
   text-align: left;
@@ -27,13 +21,26 @@ body{
 
 .backgroundForm{
   background: rgba(0, 0, 0, 0.85);
+  max-height: 450px;
 }
+.blackBorderMob {
+    border-style: solid;
+    border-radius: 25px;
+    border-color: rgba(0, 0, 0, 0.85);
+    overflow: scroll;
+}
+
+.backgroundFormMob {
+  background: rgba(0, 0, 0, 0.85);
+  max-height: 410px;
+}
+
 #searchBtn{
-  margin-top: 5%;
+  margin-top: 10%;
 }
 .playList{
   color: rgb(255, 255, 255);
 }
-/* #removeButton{
+#removeButton{
   padding: 0 0.5%;
-} */
+}

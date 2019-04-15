@@ -48,14 +48,14 @@ class Presentation extends Component {
 
     songList = this.state.playlist.map(song => (
       <div className="row songRow" id={song.id}>
-        <div className="col-lg-2 col-sm-3">
+        <div className="col-2">
           <img src={song.album.images[0].url} alt='Cover' height="60" width="60"/>
         </div>
-        <div className="col-lg-9 col-sm-5 playlistText">
+        <div className="col-8 playlistText">
           <div id="songName">{song.name}</div>
           <div id="artisName">{song.artists[0].name}</div>
         </div>
-        <div className="col-lg-1 col-sm-4">
+        <div className="col-2">
           <button type='button' className='btn-danger' id='removeButton' onClick={() => {this.removeFromPlaylist(song.id)}}>-</button>
         </div>
       </div>
@@ -64,8 +64,18 @@ class Presentation extends Component {
     return (
       <div className="Presentation">
         {logo}
-        <div className="row-sm-12 row-lg-12" align="center">
-          <div className="blackBorder backgroundForm col-lg-5 col-sm-12">
+        <div align="center">
+          <div className="blackBorder backgroundForm col-lg-6 d-none d-md-flex">
+            <div className="container-fluid">
+              <div className="row justify-content-center">
+                <h3 align="center" className="my-2 playList">{this.state.playlistName}</h3>
+              </div>
+              <form>
+                {songList}
+              </form>
+            </div>
+          </div>
+          <div className="blackBorderMob backgroundFormMob col-sm-12 d-md-none">
             <div>
               <h3 align="center" className="my-2 playList">{this.state.playlistName}</h3>
               <form>
@@ -73,6 +83,8 @@ class Presentation extends Component {
               </form>
             </div>
           </div>
+        </div>
+        <div className="row justify-content-center">
           <Link to="/filter">
             <button id="searchBtn" type="submit" className="btn btn-lg btn-success form-group" onClick={this.handlePlayList}>Done</button>
           </Link>
