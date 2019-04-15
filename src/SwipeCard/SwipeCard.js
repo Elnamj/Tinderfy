@@ -22,7 +22,7 @@ class SwipeCard extends Component {
                     <div>
                         <div className="row border-bottom p-2">
                             <h2 className="col-12">{this.props.song.name}</h2>
-                            <h3 className="col-12 font-italic"> {this.props.song.artists[0].name}</h3>
+                            <h3 className="col-12 font-italic text-dark"> {this.props.song.artists[0].name}</h3>
                         </div>
                         <div className="my-4">
                             <h5 className="m-2">Album: {this.props.song.album.name}</h5>
@@ -33,9 +33,9 @@ class SwipeCard extends Component {
                 break;
             case false:
                 song_details = (
-                    <div className="row py-2">
+                    <div>
                         <h2 className="col-12">{this.props.song.name}</h2>
-                        <h3 className="col-12 font-italic"> {this.props.song.artists[0].name}</h3>
+                        <h3 className="col-12 font-italic text-secondary"> {this.props.song.artists[0].name}</h3>
                     </div>
                 );
                 break;

@@ -115,7 +115,11 @@ class Swipe extends Component {
 
         if (this.state.want_sound === true) {
             if (this.state.current_song.preview_url === null) {
-                song_audio = "a preview of the song is not available :(";
+                song_audio = (
+                    <div className="bg-danger text-white text-center py-2 py-md-3">
+                    A preview of the song is not available :(
+                    </div>
+                )
             }
             else {
                 song_audio = (<Sound url={this.state.current_song.preview_url} playStatus={Sound.status.PLAYING} loop={true}/>);
@@ -124,9 +128,9 @@ class Swipe extends Component {
 
         return (
             <div className="Swipe">
-                {logo}
                 {song_audio}
-                <div className="row my-3 justify-content-center d-none d-md-flex">
+                {logo}
+                <div className="row my-md-3 my-2 justify-content-center d-none d-md-flex">
                     {xBtn}
                     {songCard}
                     {heartBtn}
