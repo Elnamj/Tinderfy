@@ -15,22 +15,25 @@ body{
   margin-bottom: 10%;
 }
 .songRow{
-  margin-left: 5%;
   margin-top: 3%;
+  text-align: left;
 }
 .blackBorder {
     border-style: solid;
     border-radius: 25px;
     border-color: rgba(0, 0, 0, 0.85);
-    overflow: hidden;
+    overflow: scroll;
 }
 
 .backgroundForm{
   background: rgba(0, 0, 0, 0.85);
 }
 #searchBtn{
-  margin-top: 15%;
+  margin-top: 5%;
 }
 .playList{
   color: rgb(255, 255, 255);
+}
+#removeButton{
+  padding: 0 0.5%;
 }

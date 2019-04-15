@@ -22,11 +22,23 @@ class Presentation extends Component {
       playlist: this.props.model.getPlaylist(),
       playlistName: this.props.model.getPlaylistName()
     };
+    this.removeFromPlaylist = this.removeFromPlaylist.bind(this);
+  }
+
+  componentDidMount() {
+      modelInstance.addObserver(this);
   }
 
   // handlePlayList(){
   //   model.pushPlaylist();
   // }
+
+  removeFromPlaylist(id){
+  this.props.model.removeSongFromPlaylist(id);
+  this.setState({
+    playlist: this.props.model.getPlaylist()
+  });
+  }
 
   render() {
     let songList = null;
@@ -35,13 +47,16 @@ class Presentation extends Component {
     //let song = fetch("https://api.spotify.com/v1/tracks/4y3OI86AEP6PQoDE6olYhO", httpOptions).then(response => response.json())
 
     songList = this.state.playlist.map(song => (
-      <div className="row songRow" key={song.id}>
-        <div className="col-3">
+      <div className="row songRow" id={song.id}>
+        <div className="col-2">
           <img src={song.album.images[0].url} alt='Cover' height="60" width="60"/>
         </div>
         <div className="col-9 playlistText">
           <div id="songName">{song.name}</div>
           <div id="artisName">{song.artists[0].name}</div>
+        </div>
+        <div className="col-1">
+          <button type='button' className='btn btn-danger btn-sm' id='removeButton' onClick={() => {this.removeFromPlaylist(song.id)}}>-</button>
         </div>
       </div>
     ));
@@ -49,8 +64,8 @@ class Presentation extends Component {
     return (
       <div className="Presentation">
         {logo}
-        <div className="row-sm-12 row-lg-12 py-lg-5 my-lg-5" align="center">
-          <div className="blackBorder backgroundForm col-lg-3 col-sm-12">
+        <div className="row-sm-12 row-lg-12" align="center">
+          <div className="blackBorder backgroundForm col-lg-5 col-sm-12">
             <div>
               <h3 align="center" className="my-2 playList">{this.state.playlistName}</h3>
               <form>
@@ -65,6 +80,11 @@ class Presentation extends Component {
       </div>
     );
 
+  }
+  update() {
+    this.setState({
+      playlist: this.props.model.getPlaylist()
+    })
   }
 }
 

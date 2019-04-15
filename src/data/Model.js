@@ -14,6 +14,7 @@ class Model extends ObservableModel {
             headers: {'Authorization': 'Bearer '}
         };
         this.setAccToken = this.setAccToken.bind(this);
+        this.removeSongFromPlaylist = this.removeSongFromPlaylist.bind(this);
     }
 
     getGenreTypeList() {
@@ -92,10 +93,20 @@ class Model extends ObservableModel {
     }
 
     // pushPlaylist() {
-    //   var url = `https://api.spotify.com/v1/search?type=track&market=se&q=`;
+    //    var url1= `https://api.spotify.com/v1/me`;
+    //    fetch(url1, this.httpOptions).then(response => response.json())
+    //       .catch(this.handleError).then(result => {
+    //   var url = `https://api.spotify.com/v1/users/{result.id}/playlists`;
     //   fetch(url,{method: "POST", this.httpOptions}).then(response => response.json())
     //       .catch(this.handleError);
+    //    });
+    //    this._playlist = [];
     // }
+
+    removeSongFromPlaylist(id) {
+      this._playlist = this._playlist.filter(song => song.id !== id);
+      this.notifyObservers("removeSong");
+    }
 
 }
 

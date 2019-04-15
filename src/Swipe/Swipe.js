@@ -126,7 +126,7 @@ class Swipe extends Component {
             <div className="Swipe">
                 {logo}
                 {song_audio}
-                <div className="row my-3 justify-content-center d-none d-md-block">
+                <div className="row my-3 justify-content-center d-none d-md-flex">
                     {xBtn}
                     {songCard}
                     {heartBtn}
@@ -219,6 +219,5 @@ class Swipe extends Component {
         this.setState({want_sound: true, state: "REG_VIEW"})
     }
 }
-
 
 export default Swipe;
