@@ -1,3 +1,6 @@
+.Swipe {
+  touch-action: none;
+}
 
 .card-text {
   display: inline-block;
