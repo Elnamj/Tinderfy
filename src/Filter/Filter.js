@@ -14,6 +14,7 @@ class Filter extends Component {
           artist: "",
           playlistName: ""
         };
+        model.setAccToken();
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleGenre = this.handleGenre.bind(this);
         this.handleArtist = this.handleArtist.bind(this);
@@ -45,7 +46,7 @@ class Filter extends Component {
     }
 
     render() {
-      model.setAccToken();
+
       let logo = <LogoHeader model={model}/>;
         return (
             <div className="row-sm-12 row-lg-12 py-lg-2 my-lg-2" align="center">

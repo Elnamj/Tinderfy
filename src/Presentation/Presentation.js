@@ -26,18 +26,18 @@ class Presentation extends Component {
   }
 
   componentDidMount() {
-      modelInstance.addObserver(this);
+    modelInstance.addObserver(this);
   }
 
-  // handlePlayList(){
-  //   model.pushPlaylist();
-  // }
+  handlePlayList = () => {
+    modelInstance.pushPlaylist();
+  }
 
   removeFromPlaylist(id){
-  this.props.model.removeSongFromPlaylist(id);
-  this.setState({
-    playlist: this.props.model.getPlaylist()
-  });
+    this.props.model.removeSongFromPlaylist(id);
+    this.setState({
+      playlist: this.props.model.getPlaylist()
+    });
   }
 
   render() {

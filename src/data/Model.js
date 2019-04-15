@@ -13,6 +13,9 @@ class Model extends ObservableModel {
         this.httpOptions = {
             headers: {'Authorization': 'Bearer '}
         };
+        this.httpOptionsPost = {
+            headers: {'Authorization': 'Bearer ', 'Content-Type': 'application/json'}
+        };
         this.setAccToken = this.setAccToken.bind(this);
         this.removeSongFromPlaylist = this.removeSongFromPlaylist.bind(this);
     }
@@ -62,9 +65,15 @@ class Model extends ObservableModel {
     }
 
     setAccToken() {
+      if (this.getHashParams().access_token) {
+        let accTok = this.getHashParams().access_token;
         this.httpOptions = {
-            headers: {'Authorization': 'Bearer ' + this.getHashParams().access_token}
+            headers: {'Authorization': 'Bearer ' + accTok}
         };
+        this.httpOptionsPost = {
+            headers: {'Authorization': 'Bearer ' + accTok, 'Content-Type': 'application/json'}
+        };
+      }
     }
 
     search(artistName, genre) {
@@ -92,21 +101,53 @@ class Model extends ObservableModel {
         });
     }
 
-    // pushPlaylist() {
-    //    var url1= `https://api.spotify.com/v1/me`;
-    //    fetch(url1, this.httpOptions).then(response => response.json())
-    //       .catch(this.handleError).then(result => {
-    //   var url = `https://api.spotify.com/v1/users/{result.id}/playlists`;
-    //   fetch(url,{method: "POST", this.httpOptions}).then(response => response.json())
-    //       .catch(this.handleError);
-    //    });
-    //    this._playlist = [];
-    // }
+    pushPlaylist = () => {
+       var url1= `https://api.spotify.com/v1/me`;
+       fetch(url1, this.httpOptions)
+        .then(response => response.json())
+        .catch(this.handleError)
+        .then(result => {
+            var url = `https://api.spotify.com/v1/users/${result.id}/playlists`;
+            const body = JSON.stringify({
+              'name': this._playlistName,
+              'description': "Created with Tinderfy"
+            });
+
+            return fetch(url, { method: "POST", headers: this.httpOptionsPost.headers, body })
+        })
+        .then(response => response.json())
+        .catch(this.handleError)
+        .then(result => {
+          let tracks = [];
+          var playlistId = result.id;
+          var urlTracks = `https://api.spotify.com/v1/playlists/${playlistId}/tracks`;
+          this._playlist.map(song => {
+            tracks.push(song.uri);
+          });
+          this._playlist = [];
+          const body = JSON.stringify({
+            'uris': tracks
+          })
+          fetch(urlTracks, { method: "POST", headers: this.httpOptionsPost.headers, body: body })
+          .then(response => response.json())
+          .catch(this.handleError)
+        });
+    }
 
     removeSongFromPlaylist(id) {
       this._playlist = this._playlist.filter(song => song.id !== id);
       this.notifyObservers("removeSong");
     }
+
+    handleError(error) {
+    if (error.json) {
+      error.json().then(error => {
+        console.error("API Error:", error.message || error);
+      });
+    } else {
+      console.error("API Error:", error.message || error);
+    }
+  }
 
 }
 
