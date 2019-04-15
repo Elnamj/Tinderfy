@@ -24,12 +24,6 @@ class Swipe extends Component {
         this.handleSongAdded = this.handleSongAdded.bind(this);
         this.handleSongDissed = this.handleSongDissed.bind(this);
         this.goToMobileDetail = this.goToMobileDetail.bind(this);
-        this.handleDragStart = this.handleDragStart.bind(this);
-        this.handleDrop = this.handleDrop.bind(this);
-        this.handleTouchStart = this.handleTouchStart.bind(this);
-        this.handleTouchEnd = this.handleTouchEnd.bind(this);
-        this.handleDragging = this.handleDragging.bind(this);
-        this.handleTouching = this.handleTouching.bind(this);
         this.newSong = this.newSong.bind(this);
         this.update = this.update.bind(this);
         this.handleStart = this.handleStart.bind(this);
@@ -200,71 +194,6 @@ class Swipe extends Component {
         }
         this.setState({start_posX: 0, start_posY: 0});
 
-    }
-
-    handleDragStart(e) {
-        this.setState({start_posX: e.nativeEvent.clientX, start_posY: e.nativeEvent.clientY});
-    }
-
-    handleDragging(e) {
-        let move_posX = e.nativeEvent.clientX;
-        let movedX = 0 + this.state.start_posX - move_posX;
-        if (movedX < -50) {       // make 2 different if statements, one for mobile (less difference needed) and one for desktop (higher px value)
-            this.setState({swiping: true}, this.componentDidMount());
-        }
-        else if (movedX > 50){
-            this.setState({swiping: true}, this.componentDidMount());
-        }
-        else {
-            this.setState({swiping: false})
-        }
-    }
-
-    handleDrop(e) {
-        let drop_posX = e.nativeEvent.clientX;
-        let movedX = 0 + this.state.start_posX - drop_posX;
-        if (movedX < -150) {       // make 2 different if statements, one for mobile (less difference needed) and one for desktop (higher px value)
-            this.handleSongAdded(e)
-        }
-        if (movedX > 150) {
-            this.handleSongDissed(e)
-        }
-        this.setState({start_posX: 0, start_posY: 0});
-        this.setState({swiping: false});
-        document.getElementById("heart").classList.remove("heart_shadowed");
-        document.getElementById("dislike").classList.remove("dislike_shadowed")
-    }
-
-    handleTouchStart(e) {
-        let touchList = e.changedTouches;
-        this.setState({start_posX: touchList[0].clientX, start_posY: touchList[0].clientY});
-    }
-
-    handleTouching(e) {
-        let move_posX = e.touches[0].clientX;
-        let movedX = 0 + this.state.start_posX - move_posX;
-        /*e.target.style.opacity = movedX/100;*/
-        if (movedX < -50) {       // make 2 different if statements, one for mobile (less difference needed) and one for desktop (higher px value)
-            this.setState({swiping: true}, this.componentDidMount);
-        }
-        else if (movedX > 50){
-            this.setState({swiping: true}, this.componentDidMount);
-        }
-            this.setState({swiping: false});
-        }
-
-    handleTouchEnd(e) {
-        let touchList = e.changedTouches;
-        let drop_posX = touchList[0].clientX;
-        let movedX = 0 + this.state.start_posX - drop_posX;
-        if (movedX < -150) {       // make 2 different if statements, one for mobile (less difference needed) and one for desktop (higher px value)
-            this.handleSongAdded(e)
-        }
-        if (movedX > 150) {
-            this.handleSongDissed(e)
-        }
-        this.setState({start_posX: 0, start_posY: 0}, this.componentDidMount());
-        this.setState({swiping: false}, this.componentDidMount());
     }
 
     handleSongAdded(e) {
