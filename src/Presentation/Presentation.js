@@ -56,7 +56,7 @@ class Presentation extends Component {
           <div id="artisName">{song.artists[0].name}</div>
         </div>
         <div className="col-1">
-          <button type='button' className='btn btn-danger btn-sm' id='removeButton' onClick={() => {this.removeFromPlaylist(song.id)}}>-</button>
+          <button type='button' className='btn-danger btn-md' id='removeButton' onClick={() => {this.removeFromPlaylist(song.id)}}>-</button>
         </div>
       </div>
     ));
@@ -74,7 +74,7 @@ class Presentation extends Component {
             </div>
           </div>
           <Link to="/filter">
-            <button id="searchBtn" type="submit" className="btn-lg btn-success form-group" onClick={this.handlePlayList}>Done</button>
+            <button id="searchBtn" type="submit" className="btn btn-lg btn-success form-group" onClick={this.handlePlayList}>Done</button>
           </Link>
         </div>
       </div>
