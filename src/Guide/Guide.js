@@ -23,7 +23,7 @@ class Guide extends Component {
                             <h1 className="display-1 d-none d-md-block text-white">Guide</h1>
                             <h1 className="display-4 d-md-none text-white">Guide</h1>
                         </div>
-                        <div className="row py-3 py-md-4 px-1">
+                        <div className="row py-3 py-md-4 px-1 text-white">
                             <p> 1. Log in with your Spotify account <br/>
                                 2. Fill in your new playlist's name, desired genre and/or artist <br/>
                                 3. Start swiping! Swipe to the right to add the track to your new playlist, <br/>
