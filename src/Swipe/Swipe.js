@@ -133,7 +133,7 @@ class Swipe extends Component {
         }
 
         return (
-            <div className="Swipe" onTouchStart={e => e.preventDefault()} onTouchMove={e => e.preventDefault()}>
+            <div className="Swipe" id="swipe-top">
                 {song_audio}
                 {logo}
                 <div className="row my-md-3 my-2 justify-content-center d-none d-md-flex">
