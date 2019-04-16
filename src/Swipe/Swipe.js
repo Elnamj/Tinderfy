@@ -56,6 +56,14 @@ class Swipe extends Component {
         </Link>;
 
         switch (this.state.state) {
+            case "ERROR":
+                heartBtn = null;
+                xBtn = null;
+                createBtn = <Link to="/filter">
+                    <button className="btn cool-btn btn1">Try again</button>
+                </Link>;
+                songCard = <h2 className="text-white my-5 py-5">No search results 😞</h2>;
+                break;
             case "LOADING":
                 songCard = (
                     <div className="col-8 justify-content-center text-center">
@@ -105,9 +113,11 @@ class Swipe extends Component {
                 );
                 break;
             case "EMPTY":
+                heartBtn = null;
+                xBtn = null;
                 songCard = (
                     <div className="col-8 justify-content-center text-center">
-                        <h2>No more songs loaded :( Do you want to load more?</h2>
+                        <h2 className="text-white my-5">DAMN! You're on fire, and we're out of songs 💔 Click the done button below to check out your playlist! 🔥</h2>
                     </div>
                 );
                 break;
@@ -124,14 +134,6 @@ class Swipe extends Component {
             else {
                 song_audio = (<Sound url={this.state.current_song.preview_url} playStatus={Sound.status.PLAYING} loop={true}/>);
             }
-        }
-
-        if (this.searchresults === "") {
-            song_audio = (
-                <div className="bg-danger text-white text-center py-2 py-md-3">
-                    No search results 😞
-                </div>
-            )
         }
 
         return (
@@ -220,9 +222,15 @@ class Swipe extends Component {
         }
     }
 
-    update(details) {
-        this.newSong();
-        this.setState({want_sound: true, state: "REG_VIEW"})
+    update(model, details) {
+        console.log(details);
+        if (details === "no result") {
+            this.setState({state: "ERROR"});
+        }
+        else {
+            this.newSong();
+            this.setState({want_sound: true, state: "REG_VIEW"})
+        }
     }
 }
 
