@@ -17,8 +17,13 @@ class GuideButtons extends Component {
             {/* <a href="https://tinderfy-backend.herokuapp.com/login" > */}
             {/*<a href="http://localhost:8888/login">*/}
           <div className="col-6">
+<<<<<<< HEAD
              <a href="http://localhost:8888/login">
              <button className="btn btn1 cool-btn" id="btn1">Start</button>
+=======
+             <a href="https://tinderfy-backend.herokuapp.com/login" >
+             <button className="btn btn2 cool-btn" id="btn2">Start</button>
+>>>>>>> d88d7bdaa676237f6c7d8d0e26d21eafc36d8d5c
              </a>
           </div>
         </div>

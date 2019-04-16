@@ -80,7 +80,7 @@ class Presentation extends Component {
         </div>
         <div className="row justify-content-center">
           <Link to="/filter">
-            <button id="searchBtn" type="submit" className="btn btn-lg cool-btn btn1 form-group" onClick={this.handlePlayList} disabled={(this.state.playlist === [])}>Save & Start Over</button>
+            <button id="searchBtn" type="submit" className="btn btn-lg cool-btn btn1 form-group" onClick={this.handlePlayList} disabled={(this.state.playlist.length === 0)}>Save & Start Over</button>
           </Link>
           <Link to="/filter">
             <button id="searchBtn2" type="submit" className="btn btn-lg cool-btn btn1 form-group" onClick={this.cancelPlayList}>Cancel</button>
