@@ -7,7 +7,7 @@ import App from "../App";
 class Welcome extends Component {
   render() {
     return (
-      <div className="welcome-buttons row">
+      <div className="welcome-buttons row justify-content-center text-center">
             {/* <a href="https://tinderfy-backend.herokuapp.com/login" > */}
             <div className="col-6">
                 <Link to="/guide">
