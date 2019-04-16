@@ -112,7 +112,7 @@ class Swipe extends Component {
             case "EMPTY":
                 heartBtn = null;
                 xBtn = null;
-                createBtn = <Link to="/filter">
+                createBtn = <Link to="/presentation">
                     <button className="btn cool-btn btn1">Done</button>
                 </Link>;
                 songCard = (
