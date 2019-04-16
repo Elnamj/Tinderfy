@@ -49,9 +49,9 @@ class Filter extends Component {
 
         let logo = <LogoHeader model={model}/>;
         return (
-            <div className="row-sm-12 row-lg-12 py-lg-2 my-lg-2" align="center">
+            <div className="row-sm-12 row-lg-12 py-lg-2 my-lg-2 text-white" align="center">
                 {logo}
-                <form onSubmit={this.handleSubmit} className="my-md-3 my-5">
+                <form onSubmit={this.handleSubmit} className="my-md-3 my-5 ">
                     <div className="blackBorder backgroundForm col-lg-3 col-sm-12">
                         <div>
                             <h3 align="center" className="my-2">Create Playlist</h3>

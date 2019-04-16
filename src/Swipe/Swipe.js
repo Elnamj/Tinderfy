@@ -10,6 +10,7 @@ import Draggable, {DraggableCore} from 'react-draggable';
 class Swipe extends Component {
     constructor(props) {
         super(props);
+        this.searchresults = modelInstance._searchResults;
 
         this.state = {
             state: "LOADING",
@@ -54,9 +55,15 @@ class Swipe extends Component {
             <button className="btn cool-btn btn1">Done</button>
         </Link>;
 
-        const dragHandlers = {onStart: this.onStart, onStop: this.onStop}
-
         switch (this.state.state) {
+            case "ERROR":
+                heartBtn = null;
+                xBtn = null;
+                createBtn = <Link to="/filter">
+                    <button className="btn cool-btn btn1">Try again</button>
+                </Link>;
+                songCard = <h2 className="text-white my-5 py-5">No search results 😞</h2>;
+                break;
             case "LOADING":
                 songCard = (
                     <div className="col-8 justify-content-center text-center">
@@ -89,7 +96,7 @@ class Swipe extends Component {
                 createBtn = null;
                 songCard = (
                     <div>
-                        <div className="col-12 justify-content-center text-center-lg">
+                        <div className="col-12 justify-content-center">
                             <SwipeCard model={modelInstance} song={this.state.current_song} details={true} id="card-yo"/>
                         </div>
                         <div className="row">
@@ -106,9 +113,11 @@ class Swipe extends Component {
                 );
                 break;
             case "EMPTY":
+                heartBtn = null;
+                xBtn = null;
                 songCard = (
                     <div className="col-8 justify-content-center text-center">
-                        <h2>No more songs loaded :( Do you want to load more?</h2>
+                        <h2 className="text-white my-5">DAMN! You're on fire, and we're out of songs 💔 Click the done button below to check out your playlist! 🔥</h2>
                     </div>
                 );
                 break;
@@ -213,9 +222,15 @@ class Swipe extends Component {
         }
     }
 
-    update(details) {
-        this.newSong();
-        this.setState({want_sound: true, state: "REG_VIEW"})
+    update(model, details) {
+        console.log(details);
+        if (details === "no result") {
+            this.setState({state: "ERROR"});
+        }
+        else {
+            this.newSong();
+            this.setState({want_sound: true, state: "REG_VIEW"})
+        }
     }
 }
 

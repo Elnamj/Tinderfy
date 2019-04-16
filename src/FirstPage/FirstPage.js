@@ -30,7 +30,7 @@ class FirstPage extends Component {
                                 playlists with only music that you love! Sounds fun right? Check out the guide or get started right away by clicking one of the buttons below!
                             </p>
                         </div>
-                        <div className="row mt-5 px-3">
+                        <div className="row mt-5 px-3 text-center">
                             <Welcome model={this.props.model}/>
                         </div>
                     </div>

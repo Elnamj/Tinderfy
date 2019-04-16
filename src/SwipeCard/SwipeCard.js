@@ -34,8 +34,8 @@ class SwipeCard extends Component {
             case false:
                 song_details = (
                     <div>
-                        <h2 className="col-12">{this.props.song.name}</h2>
-                        <h3 className="col-12 font-italic text-secondary"> {this.props.song.artists[0].name}</h3>
+                        <h3 className="col-12 text-truncate px-1 my-1">{this.props.song.name}</h3>
+                        <h4 className="col-12 font-italic text-secondary text-truncate px-1"> {this.props.song.artists[0].name}</h4>
                     </div>
                 );
                 break;
@@ -45,7 +45,7 @@ class SwipeCard extends Component {
                 <div className="col-lg-6 col-md-6 col-xs-12">
                     <img className="img-fluid no-drag" src={this.props.song.album.images[0].url}/>
                 </div>
-                <div className="col-lg-6 col-md-6 col-xs-12 card-text">
+                <div className="col-lg-6 col-md-6 col-xs-12 card-text mt-2">
                     {song_details}
                 </div>
             </div>
