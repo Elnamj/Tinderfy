@@ -18,7 +18,7 @@ class GuideButtons extends Component {
             {/*<a href="http://localhost:8888/login">*/}
           <div className="col-6">
              <a href="http://localhost:8888/login">
-             <button className="btn btn2 cool-btn" id="btn2">Start</button>
+             <button className="btn btn1 cool-btn" id="btn1">Start</button>
              </a>
           </div>
         </div>
