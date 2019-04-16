@@ -2,10 +2,21 @@ body {
   background-image: none;
 }
 
+#card-yo {
+  transition: 2s all ease;
+  -webkit-transition: -webkit-transform .5s linear;
+}
 
-.greenBtn {
-  background-color: #01e054;
-  border-color: #01e054;
+.heart_shadowed {
+  width: 200px;
+  -webkit-filter: drop-shadow(5px 5px 5px #1DB954);
+  filter: drop-shadow(5px 5px 5px #1DB954);
+}
+
+.dislike_shadowed {
+  width: 200px;
+  -webkit-filter: drop-shadow(5px 5px 5px red);
+  filter: drop-shadow(5px 5px 5px red);
 }
 
 /* loading icon */
