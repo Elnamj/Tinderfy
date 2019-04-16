@@ -17,6 +17,14 @@ class SwipeCard extends Component {
         let song_details = null;
         let featuring_artists = null;
 
+        if (this.props.song.artists.length > 1) {
+            featuring_artists = this.props.song.artists.map(artist => (
+                <h5 className="my-2 text d-inline">{artist.name}, </h5>
+            ));
+            featuring_artists.splice(0,1, <h5 className="my-2 d-inline">Featuring: </h5>);
+            console.log(featuring_artists);
+        }
+
         switch (this.props.details) {
             case true:
                 song_details = (
@@ -28,6 +36,7 @@ class SwipeCard extends Component {
                         <div className="my-4">
                             <h5 className="m-2">Album: {this.props.song.album.name}</h5>
                             <h5 className="m-2">Released: {this.props.song.album.release_date}</h5>
+                            <div className="mx-2">{featuring_artists}</div>
                         </div>
                     </div>
                 );
@@ -40,14 +49,6 @@ class SwipeCard extends Component {
                     </div>
                 );
                 break;
-        }
-        
-        if (this.props.song.artists.length > 1) {
-            featuring_artists = this.props.song.artists.map(artist => (
-                <h5 className="my-2 text d-inline">{artist.name}, </h5>
-            ));
-            featuring_artists.splice(0,1, <h5 className="my-2 d-inline">Featuring: </h5>);
-            console.log(featuring_artists);
         }
         
         console.log(this.props.song);
