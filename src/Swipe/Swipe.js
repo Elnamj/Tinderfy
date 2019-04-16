@@ -10,6 +10,7 @@ import Draggable, {DraggableCore} from 'react-draggable';
 class Swipe extends Component {
     constructor(props) {
         super(props);
+        this.searchresults = modelInstance._searchResults;
 
         this.state = {
             state: "LOADING",
@@ -53,8 +54,6 @@ class Swipe extends Component {
         let createBtn = <Link to="/presentation">
             <button className="btn cool-btn btn1">Done</button>
         </Link>;
-
-        const dragHandlers = {onStart: this.onStart, onStop: this.onStop}
 
         switch (this.state.state) {
             case "LOADING":
@@ -125,6 +124,14 @@ class Swipe extends Component {
             else {
                 song_audio = (<Sound url={this.state.current_song.preview_url} playStatus={Sound.status.PLAYING} loop={true}/>);
             }
+        }
+
+        if (this.searchresults === "") {
+            song_audio = (
+                <div className="bg-danger text-white text-center py-2 py-md-3">
+                    No search results 😞
+                </div>
+            )
         }
 
         return (
