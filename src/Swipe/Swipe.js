@@ -19,7 +19,6 @@ class Swipe extends Component {
             start_posX: 0,
             start_posY: 0,
             want_sound: false,
-            swiping: false
         };
         this.handleSongAdded = this.handleSongAdded.bind(this);
         this.handleSongDissed = this.handleSongDissed.bind(this);
@@ -30,9 +29,6 @@ class Swipe extends Component {
         this.handleStop = this.handleStop.bind(this);
     };
 
-    // this methods is called by React lifecycle when the
-    // component is actually shown to the user (mounted to DOM)
-    // that's a good place to call the API and get the data
     componentDidMount() {
         modelInstance.addObserver(this);
     }
@@ -75,12 +71,11 @@ class Swipe extends Component {
                 break;
             case "REG_VIEW":
                 songCard = (
-                    <Draggable bounds={{top: -22, bottom: 22}} onStart={this.handleStart} onStop={this.handleStop}
-                               defaultPosition={{x: 0, y: 0}} onDrag={this.handleDrag} lastX={0}>
+                    <Draggable position={{x: 0, y: 0}} bounds={{top: -22, bottom: 22}} onStart={this.handleStart} onStop={this.handleStop}
+                               defaultPosition={{x: 0, y: 0}} onDrag={this.handleDrag}>
                         <div className="col-8 justify-content-center text-center-lg"  onClick={this.goToMobileDetail} onMouseDown={this.handleDragStart}
                              onMouseUp={this.handleDrop} onMouseMove={this.handleDragging} onTouchStart={this.handleTouchStart}
                              onTouchEnd={this.handleTouchEnd} onTouchMove={this.handleTouching}>
-
                                 <SwipeCard className="dragging" model={modelInstance} song={this.state.current_song} details={false}/>
                         </div>
                     </Draggable>
@@ -155,14 +150,7 @@ class Swipe extends Component {
         );
     };
 
-    handleStart(e, ui) {
-        console.log(e);
-        console.log(ui);
-        //ui.lastX = 0;
-        //ui.lastY = 0;
-        console.log(ui);
-        ui.node.style.transform = `translate(0px, 0px)`;
-        ui.node.style.webkitTransform = `translate(0px, 0px)`;
+    handleStart(e) {
         if (e.touches !== undefined) {
             this.setState({start_posX: e.touches[0].clientX, start_posY: e.touches[0].clientY})
         }
@@ -171,9 +159,8 @@ class Swipe extends Component {
         }
     }
 
-    handleStop(e, ui) {
-        console.log("GOING BACK");
-        let moved = "";
+    handleStop(e) {
+        let moved = 0;
         let limit = 150;
         if (e.changedTouches !== undefined) {
             moved = this.state.start_posX - e.changedTouches[0].clientX;
@@ -182,10 +169,6 @@ class Swipe extends Component {
         else {
             moved = this.state.start_posX - e.clientX;
         }
-        ui.node.style.transform = `translate(0px, 0px)`;
-        ui.node.style.webkitTransform = `translate(0px, 0px)`;
-        ui.lastX = 0;
-        ui.lastY = 0;
         if (moved < -100) {
             this.handleSongAdded(e)
         }
@@ -193,7 +176,6 @@ class Swipe extends Component {
             this.handleSongDissed(e)
         }
         this.setState({start_posX: 0, start_posY: 0});
-
     }
 
     handleSongAdded(e) {
