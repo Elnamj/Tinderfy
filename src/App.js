@@ -9,7 +9,7 @@ import LogoHeader from "./LogoHeader/LogoHeader";
 import FirstPage from "./FirstPage/FirstPage";
 import Testing from "./testing/testing";
 import Guide from "./Guide/Guide";
-import Swipe2 from "./Swipe2/Swipe2";
+
 
 class App extends Component {
   constructor() {
