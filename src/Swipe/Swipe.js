@@ -40,15 +40,15 @@ class Swipe extends Component {
         let logo = <LogoHeader model={modelInstance}/>;
         let song_audio = "";
         let heartBtn = (
-            <div className="col-2">
-                <img className="img-fluid d-block mx-auto icon" id="heart" src={require("../images/fave.png")}
+            <div className="col-2 desktopIcons mt-md-5">
+                <img className="img-fluid d-block mx-auto" id="heart" src={require("../images/fave-w.png")}
                      onClick={this.handleSongAdded}/>
             </div>
         );
         let xBtn = (
-            <div className="col-2">
-                <img className="img-fluid d-block mx-auto icon" id="dislike"
-                     src={require("../images/thankunext.png")} onClick={this.handleSongDissed}/>
+            <div className="col-2 desktopIcons mt-md-5">
+                <img className="img-fluid d-block mx-auto" id="dislike"
+                     src={require("../images/thankunext-w.png")} onClick={this.handleSongDissed}/>
             </div>
         );
         let createBtn = <Link to="/presentation">
@@ -78,16 +78,15 @@ class Swipe extends Component {
                 break;
             case "REG_VIEW":
                 songCard = (
-                    <Draggable position={{x: 0, y: 0}} bounds={{top: -22, bottom: 22}} onStart={this.handleStart} onStop={this.handleStop}
+                    <Draggable position={{x: 0, y: 0}} bounds={{top: -17, bottom: 15}} onStart={this.handleStart} onStop={this.handleStop}
                                defaultPosition={{x: 0, y: 0}} onDrag={this.handleDrag}>
-                        <div className="col-8 justify-content-center text-center-lg"  onClick={this.goToMobileDetail} onMouseDown={this.handleDragStart}
+                        <div className="col-8 justify-content-center text-center-lg mt-2 shadow-lg"  onClick={this.goToMobileDetail} onMouseDown={this.handleDragStart}
                              onMouseUp={this.handleDrop} onMouseMove={this.handleDragging} onTouchStart={this.handleTouchStart}
                              onTouchEnd={this.handleTouchEnd} onTouchMove={this.handleTouching}>
                                 <SwipeCard className="dragging" model={modelInstance} song={this.state.current_song} details={false}/>
                         </div>
                     </Draggable>
                 );
-
                 break;
             case "DETAIL_VIEW":
                 logo = null;
@@ -95,21 +94,22 @@ class Swipe extends Component {
                 xBtn = null;
                 createBtn = null;
                 songCard = (
-                    <div>
+                    <div className="bg-white">
                         <div className="col-12 justify-content-center">
                             <SwipeCard model={modelInstance} song={this.state.current_song} details={true} id="card-yo"/>
                         </div>
-                        <div className="row">
-                            <div className="col-6">
-                                <img className="img-fluid d-block mx-auto icon"
-                                     src={require("../images/thankunext.png")} onClick={this.handleSongDissed}/>
-                            </div>
-                            <div className="col-6">
-                                <img className="img-fluid d-block mx-auto icon" src={require("../images/fave.png")}
+                        <div className="row justify-content-center mt-3 bg-white h-100">
+                            <div className="col-2 mobileIcons">
+                                <img className="img-fluid d-block mx-auto" id="heart" src={require("../images/fave-b.png")}
                                      onClick={this.handleSongAdded}/>
+                            </div>
+                            <div className="col-2 mobileIcons">
+                                <img className="img-fluid d-block mx-auto" id="dislike"
+                                     src={require("../images/thankunext-b.png")} onClick={this.handleSongDissed}/>
                             </div>
                         </div>
                     </div>
+
                 );
                 break;
             case "EMPTY":
@@ -127,7 +127,7 @@ class Swipe extends Component {
             if (this.state.current_song.preview_url === null) {
                 song_audio = (
                     <div className="bg-danger text-white text-center py-2 py-md-3">
-                    A preview of the song is not available :(
+                    A preview of the song is not available 😢
                     </div>
                 )
             }
@@ -145,7 +145,7 @@ class Swipe extends Component {
                     {songCard}
                     {heartBtn}
                 </div>
-                <div className="row my-2 d-md-none justify-content-center">
+                <div className="row mb-2 d-md-none justify-content-center">
                     {songCard}
                 </div>
                 <div className="row py-3 d-md-none justify-content-center">
