@@ -113,7 +113,7 @@ class Model extends ObservableModel {
             var url = `https://api.spotify.com/v1/users/${result.id}/playlists`;
             const body = JSON.stringify({
               'name': this._playlistName,
-              'description': "Created with Tinderfy"
+              'description': "Created with Tinderfy 🔥"
             });
 
             return fetch(url, { method: "POST", headers: this.httpOptionsPost.headers, body })

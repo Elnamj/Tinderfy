@@ -43,7 +43,7 @@ class SwipeCard extends Component {
         return (
             <div className="row swipe-card justify-content-center shadow-lg py-2 bg-white">
                 <div className="col-lg-6 col-md-6 col-xs-12">
-                    <img className="img-fluid" src={this.props.song.album.images[0].url}/>
+                    <img className="img-fluid no-drag" src={this.props.song.album.images[0].url}/>
                 </div>
                 <div className="col-lg-6 col-md-6 col-xs-12 card-text">
                     {song_details}

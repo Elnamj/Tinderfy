@@ -20,10 +20,10 @@ class FirstPage extends Component {
                 <div className="row mx-1 py-5">
                     <div className="col-xs-12 col-md-6 pt-md-5 px-3">
                         <div className="row mt-5 px-1">
-                            <h1 className="display-1 d-none d-md-block text-white">Tinderfy</h1>
-                            <img className="tinderfy-logo-md d-none d-md-block" src={require("../images/logo.png")} alt="tinderfy logo"/>
+                            <h1 className="display-1 d-none d-md-inline text-white">Tinderfy</h1>
+                            <img className="tinderfy-logo-md d-none d-md-inline mx-3" src={require("../images/logo.png")} alt="tinderfy logo"/>
                             <h1 className="display-4 d-md-none text-white">Tinderfy</h1>
-                            <img className="tinderfy-logo-xs d-md-none" src={require("../images/logo.png")} alt="tinderfy logo"/>
+                            <img className="tinderfy-logo-xs d-md-none mx-2" src={require("../images/logo.png")} alt="tinderfy logo"/>
                         </div>
                         <div className="row py-3 py-md-4 px-1 text-white">
                             <p>Welcome to Tinderfy, the website of your dreams that lets you create custom Spotify
