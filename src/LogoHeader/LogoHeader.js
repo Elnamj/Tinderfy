@@ -16,7 +16,7 @@ class LogoHeader extends Component {
 
     return (
       <div className="LogoHeader">
-          <div className="logo-header row justify-content-center my-md-5 my-xs-3 mt-3">
+          <div className="logo-header row justify-content-center my-md-3 my-xs-3 mt-3">
             <img className="logo" src={require("../images/logo.png")} alt="tinderfy logo"/>
           </div>
       </div>
