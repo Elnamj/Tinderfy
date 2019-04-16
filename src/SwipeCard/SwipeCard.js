@@ -15,6 +15,7 @@ class SwipeCard extends Component {
     render() {
 
         let song_details = null;
+        let featuring_artists = null;
 
         switch (this.props.details) {
             case true:
@@ -40,6 +41,16 @@ class SwipeCard extends Component {
                 );
                 break;
         }
+        
+        if (this.props.song.artists.length > 1) {
+            featuring_artists = this.props.song.artists.map(artist => (
+                <h5 className="my-2 text d-inline">{artist.name}, </h5>
+            ));
+            featuring_artists.splice(0,1, <h5 className="my-2 d-inline">Featuring: </h5>);
+            console.log(featuring_artists);
+        }
+        
+        console.log(this.props.song);
         return (
             <div className="row swipe-card justify-content-center shadow-lg py-2 bg-white">
                 <div className="col-lg-6 col-md-6 col-xs-12">
@@ -47,7 +58,13 @@ class SwipeCard extends Component {
                 </div>
                 <div className="col-lg-6 col-md-6 col-xs-12 card-text mt-2">
                     {song_details}
+                    <div className="my-4 d-none d-md-inline">
+                        <h5 className="m-2">Album: {this.props.song.album.name}</h5>
+                        <h5 className="m-2">Released: {this.props.song.album.release_date}</h5>
+                        <div className="mx-2">{featuring_artists}</div>
+                    </div>
                 </div>
+
             </div>
 
         );
