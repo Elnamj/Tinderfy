@@ -96,7 +96,7 @@ class Swipe extends Component {
                 createBtn = null;
                 songCard = (
                     <div>
-                        <div className="col-12 justify-content-center text-center-lg">
+                        <div className="col-12 justify-content-center">
                             <SwipeCard model={modelInstance} song={this.state.current_song} details={true} id="card-yo"/>
                         </div>
                         <div className="row">
