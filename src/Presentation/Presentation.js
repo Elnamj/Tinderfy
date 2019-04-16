@@ -57,9 +57,13 @@ class Presentation extends Component {
 
     return (
       <div className="Presentation">
-        {logo}
-        <div align="center">
-          <div className="blackBorder backgroundForm col-lg-6 d-none d-md-flex">
+        <div className="d-md-none">
+          {logo}
+        </div>
+        <div className="row">
+          <div className="col-lg-1">
+          </div>
+          <div className="blackBorder backgroundForm col-lg-6 d-none d-md-flex" align="center">
             <div className="container-fluid">
               <div className="row justify-content-center">
                 <h3 align="center" className="my-2 playList">{this.state.playlistName}</h3>
@@ -77,14 +81,26 @@ class Presentation extends Component {
               </form>
             </div>
           </div>
-        </div>
-        <div className="row justify-content-center">
-          <Link to="/filter">
-            <button id="searchBtn" type="submit" className="btn btn-lg cool-btn btn1 form-group" onClick={this.handlePlayList} disabled={(this.state.playlist.length === 0)}>Save & Start Over</button>
-          </Link>
-          <Link to="/filter">
-            <button id="searchBtn2" type="submit" className="btn btn-lg cool-btn btn1 form-group" onClick={this.cancelPlayList}>Cancel</button>
-          </Link>
+          <div className="col-lg-5 col-sm-12 justify-content-center">
+            <div className="d-none d-md-flex justify-content-center">
+              {logo}
+            </div>
+            <div className="row justify-content-center">
+              <Link to="/filter">
+                <button id="searchBtn" type="submit" className="btn btn-lg cool-btn btn1 form-group" onClick={this.handlePlayList} disabled={(this.state.playlist.length === 0)}>Save & Start Over</button>
+              </Link>
+            </div>
+            <div className="row justify-content-center">
+              <Link to="/swipe">
+                <button id="searchBtn2" type="submit" className="btn btn-lg cool-btn btn1 form-group">Continue swiping</button>
+              </Link>
+            </div>
+            <div className="row justify-content-center">
+              <Link to="/filter">
+                <button id="searchBtn2" type="submit" className="btn btn-lg cool-btn btn1 form-group" onClick={this.cancelPlayList}>Cancel</button>
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
     );
