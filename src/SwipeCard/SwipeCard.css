@@ -1,5 +1,10 @@
-.Swipe {
-  touch-action: none;
+body{
+  overflow: scroll;
+}
+
+.details img{
+  width: 200px;
+  height: auto;
 }
 
 .card-text {

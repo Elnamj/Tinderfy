@@ -35,9 +35,6 @@ class Swipe extends Component {
         modelInstance.addObserver(this);
     }
 
-    componentWillUnmount () {
-
-    }
 
     render() {
         let songCard = null;
@@ -115,6 +112,9 @@ class Swipe extends Component {
             case "EMPTY":
                 heartBtn = null;
                 xBtn = null;
+                createBtn = <Link to="/filter">
+                    <button className="btn cool-btn btn1">Done</button>
+                </Link>;
                 songCard = (
                     <div className="col-8 justify-content-center text-center">
                         <h2 className="text-white my-5">DAMN! You're on fire, and we're out of songs 💔 Click the done button below to check out your playlist! 🔥</h2>
@@ -224,6 +224,9 @@ class Swipe extends Component {
     goToMobileDetail() {
         if (this.state.mobile) {
             this.setState({state: "DETAIL_VIEW"}, this.componentDidMount)
+        }
+        if (this.state.state === "DETAIL_VIEW") {
+            this.setState({state: "REG_VIEW"}, this.componentDidMount)
         }
     }
 
