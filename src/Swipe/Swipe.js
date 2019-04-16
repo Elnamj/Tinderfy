@@ -51,10 +51,7 @@ class Swipe extends Component {
                      src={require("../images/thankunext-w.png")} onClick={this.handleSongDissed}/>
             </div>
         );
-        let createBtn = <Link to="/presentation">
-            <button className="btn cool-btn btn1">Done</button>
-        </Link>;
-
+        let createBtn = null;
         switch (this.state.state) {
             case "ERROR":
                 heartBtn = null;
@@ -65,6 +62,9 @@ class Swipe extends Component {
                 songCard = <h2 className="text-white my-5 py-5">No search results 😞</h2>;
                 break;
             case "LOADING":
+                heartBtn = null;
+                xBtn = null;
+                createBtn = null;
                 songCard = (
                     <div className="col-8 justify-content-center text-center">
                         <div className="lds-ring align-center">
@@ -77,6 +77,9 @@ class Swipe extends Component {
                 );
                 break;
             case "REG_VIEW":
+                createBtn = <Link to="/presentation">
+                    <button className="btn cool-btn btn1">Done</button>
+                </Link>;
                 songCard = (
                     <Draggable position={{x: 0, y: 0}} bounds={{top: -17, bottom: 15}} onStart={this.handleStart} onStop={this.handleStop}
                                defaultPosition={{x: 0, y: 0}} onDrag={this.handleDrag}>
@@ -100,12 +103,12 @@ class Swipe extends Component {
                         </div>
                         <div className="row justify-content-center mt-3 bg-white h-100">
                             <div className="col-2 mobileIcons">
-                                <img className="img-fluid d-block mx-auto" id="heart" src={require("../images/fave-b.png")}
+                                <img className="img-fluid d-block mx-auto" id="heart" src={require("../images/thankunext-b.png")}
                                      onClick={this.handleSongAdded}/>
                             </div>
                             <div className="col-2 mobileIcons">
                                 <img className="img-fluid d-block mx-auto" id="dislike"
-                                     src={require("../images/thankunext-b.png")} onClick={this.handleSongDissed}/>
+                                     src={require("../images/fave-b.png")} onClick={this.handleSongDissed}/>
                             </div>
                         </div>
                     </div>
