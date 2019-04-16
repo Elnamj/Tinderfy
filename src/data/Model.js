@@ -5,18 +5,15 @@ import {Router, Link} from 'react-router';
 class Model extends ObservableModel {
     constructor(props) {
         super(props);
-        this._genreList = [{list_name: "Pop", q_name: "pop"}, {
-            list_name: "Hip Hop",
-            q_name: "hip hop"
-        }, {list_name: "Jazz", q_name: "jazz"}, {list_name: "Electronic/Dance", q_name: "edm"},
-            {list_name: "Rock", q_name: "rock"}, {list_name: "Indie", q_name: "indie"}, {
-                list_name: "Metal",
-                q_name: "metal"
-            }, {list_name: "Country", q_name: "country"}, {list_name: "Soul", q_name: "soul"},
-            {list_name: "Classical", q_name: "classical"}, {
-                list_name: "Happy",
-                q_name: "happy"
-            }, {list_name: "Romantic", q_name: "romantic"}];
+        this._genreList = [{list_name: "Pop", q_name: "pop"},
+        {list_name: "Hip Hop",q_name: "hip hop"}, {list_name: "Jazz", q_name: "jazz"},
+        {list_name: "Electronic/Dance", q_name: "edm"}, {list_name: "Rock", q_name: "rock"},
+        {list_name: "Indie", q_name: "indie"}, {list_name: "Metal", q_name: "metal"},
+        {list_name: "Country", q_name: "country"}, {list_name: "Soul", q_name: "soul"},
+        {list_name: "Happy", q_name: "happy"}, {list_name: "Romantic", q_name: "romantic"},
+        {list_name: "Dance", q_name: "dance"}, {list_name: "Disco", q_name: "disco"},
+        {list_name: "Disney", q_name: "disney"},
+        {list_name: "Kids", q_name: "kids"}, {list_name: "Sleep", q_name: "sleep"}];
         this._searchResults = "";
         this._playlist = [];
         this._playlistName = "";
