@@ -6,7 +6,7 @@ import "./Swipe.css";
 import SwipeCard from "../SwipeCard/SwipeCard";
 import Sound from "react-sound";
 import Draggable, {DraggableCore} from 'react-draggable';
-import ReactDOM from "react-dom";
+import {Offline, Online} from "react-detect-offline";
 
 class Swipe extends Component {
     constructor(props) {
@@ -138,6 +138,11 @@ class Swipe extends Component {
 
         return (
             <div className="Swipe" id="swipe-top">
+                <Offline>
+                    <div className="bg-danger text-white text-center py-2 py-md-3">
+                        Oops! No internet connection! 🤷‍
+                    </div>
+                </Offline>
                 {song_audio}
                 {logo}
                 <div className="row my-md-3 my-2 justify-content-center d-none d-md-flex">

@@ -18,7 +18,7 @@ class FirstPage extends Component {
             <div className="FirstPage container-fluid py-xs-2">
               <Offline>
                 <div className="bg-danger text-white text-center py-2 py-md-3">
-                  No internet connection!
+                  Oops! No internet connection! 🤷‍️
                 </div>
               </Offline>
                 <div className="row mx-1 py-5">
