@@ -6,11 +6,11 @@ import "./Swipe.css";
 import SwipeCard from "../SwipeCard/SwipeCard";
 import Sound from "react-sound";
 import Draggable, {DraggableCore} from 'react-draggable';
+import ReactDOM from "react-dom";
 
 class Swipe extends Component {
     constructor(props) {
         super(props);
-        this.searchresults = modelInstance._searchResults;
 
         this.state = {
             state: "LOADING",
@@ -31,11 +31,15 @@ class Swipe extends Component {
     };
 
     componentDidMount() {
+
         modelInstance.addObserver(this);
     }
 
+    componentWillUnmount () {
+
+    }
+
     render() {
-      console.log("kolla:", this.state.current_song);
         let songCard = null;
         let logo = <LogoHeader model={modelInstance}/>;
         let song_audio = "";
@@ -65,16 +69,9 @@ class Swipe extends Component {
                 heartBtn = null;
                 xBtn = null;
                 createBtn = null;
-                songCard = (
-                    <div className="col-8 justify-content-center text-center">
-                        <div className="lds-ring align-center">
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                        </div>
-                    </div>
-                );
+                songCard = (<div class="spinner-border m-5 spinner text-light"role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>);
                 break;
             case "REG_VIEW":
                 createBtn = <Link to="/presentation">
@@ -232,7 +229,8 @@ class Swipe extends Component {
         }
         else {
             this.newSong();
-            this.setState({want_sound: true, state: "REG_VIEW"})
+            this.setState({want_sound: true, state: "REG_VIEW"});
+            console.log(this.state.state);
         }
     }
 }

@@ -11,6 +11,11 @@ body{
   -webkit-transition: -webkit-transform .5s linear;
 }
 
+.spinner{
+  width: 10rem;
+  height: 10rem;
+}
+
 .desktopIcons img{
   width: 70px;
   height: auto;
@@ -19,53 +24,4 @@ body{
 .mobileIcons img{
   width: 50px;
   height: auto;
-}
-
-.heart_shadowed {
-  width: 200px;
-  -webkit-filter: drop-shadow(5px 5px 5px #1DB954);
-  filter: drop-shadow(5px 5px 5px #1DB954);
-}
-
-.dislike_shadowed {
-  width: 200px;
-  -webkit-filter: drop-shadow(5px 5px 5px red);
-  filter: drop-shadow(5px 5px 5px red);
-}
-
-/* loading icon */
-.lds-ring {
-  display: inline-block;
-  position: relative;
-  width: 150px;
-  height: 150px;
-}
-.lds-ring div {
-  box-sizing: border-box;
-  display: block;
-  position: absolute;
-  width: 80px;
-  height: 80px;
-  margin-top: 50%;
-  border: 6px solid #01e054;
-  border-radius: 50%;
-  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-  border-color: #01e054 transparent transparent transparent;
-}
-.lds-ring div:nth-child(1) {
-  animation-delay: -0.45s;
-}
-.lds-ring div:nth-child(2) {
-  animation-delay: -0.3s;
-}
-.lds-ring div:nth-child(3) {
-  animation-delay: -0.15s;
-}
-@keyframes lds-ring {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
 }

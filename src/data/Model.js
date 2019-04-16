@@ -172,6 +172,10 @@ class Model extends ObservableModel {
         this._playlist = [];
     }
 
+    reloadSwipe() {
+        this.notifyObservers("load-again")
+    }
+
 }
 
 

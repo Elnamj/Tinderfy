@@ -106,11 +106,6 @@ class Presentation extends Component {
               </div>
             </Offline>
             <div className="row justify-content-center">
-              <Link to="/swipe">
-                <button id="searchBtn2" type="submit" className="btn btn-lg cool-btn btn1 form-group">Continue swiping</button>
-              </Link>
-            </div>
-            <div className="row justify-content-center">
               <Link to="/filter">
                 <button id="searchBtn2" type="submit" className="btn btn-lg cool-btn btn1 form-group" onClick={this.cancelPlayList}>Cancel</button>
               </Link>
@@ -121,6 +116,7 @@ class Presentation extends Component {
     );
 
   }
+
   update() {
     this.setState({
       playlist: this.props.model.getPlaylist()
