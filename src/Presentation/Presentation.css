@@ -19,9 +19,10 @@
     overflow: scroll;
 }
 
-.backgroundForm{
+.backgroundForm {
   background: rgba(0, 0, 0, 0.85);
-  max-height: 450px;
+  max-height: 650px;
+  margin-top: 2%;
 }
 .blackBorderMob {
     border-style: solid;
@@ -33,6 +34,7 @@
 .backgroundFormMob {
   background: rgba(0, 0, 0, 0.85);
   max-height: 410px;
+  margin-top: 2%;
 }
 
 #searchBtn{
