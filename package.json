@@ -5,6 +5,7 @@
   "dependencies": {
     "query-string": "^5.0.0",
     "react": "^16.1.0",
+    "react-detect-offline": "^2.3.0",
     "react-dom": "^16.1.0",
     "react-draggable": "^3.2.1",
     "react-router-dom": "^5.0.0",

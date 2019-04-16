@@ -35,7 +35,7 @@ class Swipe extends Component {
     }
 
     render() {
-
+      console.log("kolla:", this.state.current_song);
         let songCard = null;
         let logo = <LogoHeader model={modelInstance}/>;
         let song_audio = "";
@@ -67,7 +67,7 @@ class Swipe extends Component {
             case "LOADING":
                 songCard = (
                     <div className="col-8 justify-content-center text-center">
-                        <div className="lds-ring">
+                        <div className="lds-ring align-center">
                             <div></div>
                             <div></div>
                             <div></div>

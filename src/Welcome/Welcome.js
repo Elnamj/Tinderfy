@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "./Welcome.css";
 import App from "../App";
+import {Offline,Online} from "react-detect-offline";
 
 
 class Welcome extends Component {
@@ -16,11 +17,18 @@ class Welcome extends Component {
             </div>
             {/* <a href="https://tinderfy-backend.herokuapp.com/login" > */}
             {/* <a href="http://localhost:8888/login">*/}
-          <div className="col-6">
-             <a href="http://localhost:8888/login" >
-             <button className="cool-btn btn1 btn" id="btn2">Start</button>
-             </a>
-          </div>
+          <Online>
+            <div className="col-6">
+               <a href="http://localhost:8888/login" >
+               <button className="cool-btn btn1 btn" id="btn1">Start</button>
+               </a>
+            </div>
+          </Online>
+          <Offline>
+            <div className="col-6">
+               <button className="cool-btn btn1 btn" disabled id="btn1">Start</button>
+            </div>
+          </Offline>
         </div>
     );
   }

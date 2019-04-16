@@ -4,6 +4,7 @@ import GuideButtons from "../GuideButtons/GuideButtons";
 import "./Guide.css";
 import LogoHeader from "../LogoHeader/LogoHeader";
 import model from "../data/Model";
+import {Offline,Online} from "react-detect-offline";
 
 
 class Guide extends Component {
@@ -17,6 +18,11 @@ class Guide extends Component {
         return (
             // <div id="concert">
             <div className="FirstPage container-fluid py-md-5 py-xs-2">
+              <Offline>
+                <div className="bg-danger text-white text-center py-2 py-md-3">
+                  No internet connection!
+                </div>
+              </Offline>
                 <div className="row mx-1 py-5">
                     <div className="col-xs-12 col-md-6 pt-md-5 px-3">
                         <div className="row mt-5 px-1">

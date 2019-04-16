@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import modelInstance from "../data/Model";
 import LogoHeader from "../LogoHeader/LogoHeader";
 import "./Presentation.css";
+import {Offline,Online} from "react-detect-offline";
 
 class Presentation extends Component {
   constructor(props) {
@@ -57,6 +58,11 @@ class Presentation extends Component {
 
     return (
       <div className="Presentation">
+        <Offline>
+          <div className="bg-danger text-white text-center py-2 py-md-3">
+            No internet connection!
+          </div>
+        </Offline>
         <div className="d-md-none">
           {logo}
         </div>
@@ -85,11 +91,20 @@ class Presentation extends Component {
             <div className="d-none d-md-flex justify-content-center">
               {logo}
             </div>
-            <div className="row justify-content-center">
-              <Link to="/filter">
-                <button id="searchBtn" type="submit" className="btn btn-lg cool-btn btn1 form-group" onClick={this.handlePlayList} disabled={(this.state.playlist.length === 0)}>Save & Start Over</button>
-              </Link>
-            </div>
+            <Online>
+              <div className="row justify-content-center">
+                <Link to="/filter">
+                  <button id="searchBtn" type="submit" className="btn btn-lg cool-btn btn1 form-group" onClick={this.handlePlayList} disabled={(this.state.playlist.length === 0)}>Save & Start Over</button>
+                </Link>
+              </div>
+            </Online>
+            <Offline>
+              <div className="row justify-content-center">
+                <Link to="/filter">
+                  <button id="searchBtn" type="submit" className="btn btn-lg cool-btn btn1 form-group" disabled>Save & Start Over</button>
+                </Link>
+              </div>
+            </Offline>
             <div className="row justify-content-center">
               <Link to="/swipe">
                 <button id="searchBtn2" type="submit" className="btn btn-lg cool-btn btn1 form-group">Continue swiping</button>
