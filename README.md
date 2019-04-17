@@ -40,7 +40,7 @@ GuideButtons folder - this folder containts the following files:
 
 Presentation folder - This folder contains two files, one containing js and one with css. The js one collects the playlist from the Modul and then uses map to go through the playlist and disply each song in a container. The css-file styles the js-file with a picture and container and more.  
 
-Filter folder - this folder contains the following  two files: Filter.css for styling and Filter.js. In Filter.js a form is created so that the user can search and filter tracks. The user can select genres, moods and search for playlists and free texts. For now the options is hard coded in Model and not generated from the api. When clicking on the ”start matching” button the user will end up on the swipe page. 
+Filter folder - this folder contains the following  two files: Filter.css for styling and Filter.js. In Filter.js a form is created so that the user can search and filter tracks. The user writes the name of the playlist that will be created and can thereafter select genres/moods and search for an artist. To be able to click on the button "start" the user must fill in a name for the playlist and at least one of the genre/mood and artist options. When clicking on the ”start” button the user will end up on the swipe page with songs that match the users chosen filter. 
 
 Swipe folder - this folder contains the following files:
 	<br/>Swipe.css - styling for the swipe component
