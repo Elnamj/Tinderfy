@@ -1,32 +1,42 @@
 Tinderfy
 =================================================
 
-This app will let the user enter search filters and then present recommended songs based on this choice as well as what kind of music the user usually listens to. The song will be presented with a card containing title and album cover and a 30 second clip will also play. The user can either decide to add the song to a playlist by swiping to the right, or ignore the song by swiping to the left. 
+This app will let the user login to their own Spotify account before entering search filters and then it will present recommended songs based on this choice as well as what kind of music the user usually listens to. The song will be presented with a card containing title, artists, album name,  album cover, release date and a 30 second clip will also play if there is a preview available (Spotify Premium users will have access to more previews than the basic users).  The user can either decide to add the song to a playlist by swiping to the right, or ignore the song by swiping to the left. (These choices can also be made by clicking the heart/cross.) When the user is satisfied with their new playlist, they are able to save it to their Spotify account. 
+
 For the Heroku app, we use this front-end repository and one back-end repository. The back-end repository contains files that we have gotten from the Spotify Web API page for authorization. We have changed very little in this code and it is quite unneccessary to look at when reviewing our project.
 
-What we have done
-=====================
+Where to check it out
+=================================================
 
-So far, we have started implementing the basic layout of our app. We have also spent a lot of time getting the API to work. Since we are using the Spotify Web API which requires user login and authorization, it's a bit more complicated than the Spoonacular API. Right now we are doing one call to the API, which is the login-call.
+Visit tinderfy.herokuapp.com on Google Chrome or Firefox to check out the app. Please do not switch from desktop to phone in midst of using the app. 
 
-What we have left to do
-=====================
+Our project file structure
+=================================================
 
-We have some work left with the API. Right now, we are using a hardcoded list of songs. The playlist overview page that you end up on once you're done with your playlist also uses a hardcoded list of songs. The swipe view songs should be fetched from the API, and then a playlist should be crated from the liked songs by calling the API. We also would like to implement the swipe feature in the song choosing view.
-
-Our project file structure (short description/purpose of each file)
-=====================
-
-Images folder <br/>- contains images that are used throughout the app, i.e. our logo and the heart button
+Images folder - contains images that are used throughout the app, i.e. our logo and the heart button
 
 FirstPage folder - this folder contains the following files:
-	<br/>FirstPage.js - this is the first page of the website and contains the Slideshow-component.
-	<br/>FirstPage.css - styling of the first page (background image).
+	FirstPage.js - this is the first page of the website and contains the Slideshow-component as well as Welcome-component.
+	FirstPage.css - styling of the first page (background animation), this also overrides other css-files so the background animation is shown on every page. 
 
 Slideshow folder - this folder contains the following folder and files:
-	<br/>Images - this folder contains 9 image-files which is not used at the moment. Ignore these.
-	<br/>Slideshow.js - this contains the spinning slideshow presenting 9 album covers.
-	<br/>Slideshow.css - styling of the slideshow.
+	Images - this folder contains 9 images.
+	Slideshow.js - this contains the spinning slideshow presenting 9 album covers.
+	Slideshow.css - styling of the slideshow.
+	
+Welcome folder - this folder contains the following folder and files:
+	Welcome.js - contains a component with two buttons. One that redirects the user to Spotify's login, and the other links to a guide.
+	Welcome.css - styling of the buttons. This css overrides other css-files so the buttons' animations are shown on every page.
+	
+Guide folder - this folder contains the following files:
+	Guide.js - this is similar to the first page, but are showing instructions on how to use Tinderfy as well as the GuideButtons-component.
+	Guide.css - empty. Could delete this, lol.
+
+GuideButtons folder - this folder containts the following files:
+	GuideButtons.js - similar to the Welcome-component, but there is a back-button which is linking back to the first page.
+	GuideButtons.css - empty. Could delete this, lol.
+	
+
 
 Presentation folder - This folder contains two files, one containing js and one with css. The js one collects the playlist from the Modul and then uses map to go through the playlist and disply each song in a container. The css-file styles the js-file with a picture and container and more.  
 
