@@ -46,9 +46,9 @@ Filter folder - this folder contains the following  two files: Filter.css for st
 
 Swipe folder - this folder contains the following files:
 	<br/>Swipe.css - styling for the swipe component
-	<br/>Swipe.js - takes care of the swipe page. Initializes SwipeCard components for each song (the song is passed as a props) and adds these songs to a playlist if they are "liked" by the user. The Swipe component has different states depending on if it's loading, if the song list is empty, if it's in "regular view" (desktop + mobile) or if it's in "detail view" (mobile only). The state is also passed down through props to the SwipeCard component. Also contains a hard-coded list of songs that are used for the swipe right now, will be switched out later to an actual API call.
+	<br/>Swipe.js - takes care of the swipe page. The component calls the model and asks for the search results. Once retrieved, it initializes SwipeCard components for each song (the song is passed as a props) and adds these songs to a playlist if they are "liked" by the user. The Swipe component has different states depending on if it's loading, if the song list is empty, if it's in "regular view" (desktop + mobile) or if it's in "detail view" (mobile only, you can click on a song card to get more info about the song). The state is also passed down through props to the SwipeCard component so that it knows how much song info to render.
 	
 SwipeCard folder - this folder contains the following files:
 	<br/>SwipeCard.css - styling for the swipe card component
-	<br/>SwipeCard.js - is responsible for creating a song card containing info from the song passed as a prop from the Swipe component.
+	<br/>SwipeCard.js - is responsible for creating a song card containing info from the song passed as a prop from the Swipe component. It has two different states, regular and detail. The detail state is only reachable on mobile and is rendered when a user clicks on a song card. 
 
