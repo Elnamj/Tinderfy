@@ -38,7 +38,9 @@ GuideButtons folder - this folder containts the following files:
 	
 
 
-Presentation folder - This folder contains two files, one containing js and one with css. The js one collects the playlist from the Modul and then uses map to go through the playlist and disply each song in a container. The css-file styles the js-file with a picture and container and more.  
+Presentation folder - This folder contains the following two files:
+	<br/>Presentation.css - which styles the presentation component
+	<br/>Presentation.js - runs the presations page. Goes through, with the help of map, the playlist created on the swipe-page and for each song displays the album cover, song title and artist on a row. On that row there is also a delete button so the user can delete a song before they push it to their spotify account. That delete-button call on a remove-function in the Model. There is also two other buttons on the presentation page; Cancel, which takes the user back to the filter page without saving and pushing the playlist (it empties the playlist instead) and Save & Start Over, which saves and calls on a function in Model which POSTs the playlist to your spotify account. It pushes the playlist to the users account with two POST API-calls. The first one creates the playlist (with the name you choose) and the other one pushes the songs to that playlist with the help of the playlists id.
 
 Filter folder - this folder contains the following  two files: Filter.css for styling and Filter.js. In Filter.js a form is created so that the user can search and filter tracks. The user writes the name of the playlist that will be created and can thereafter select genres/moods and search for an artist. To be able to click on the button "start" the user must fill in a name for the playlist and at least one of the genre/mood and artist options. When clicking on the ”start” button the user will end up on the swipe page with songs that match the users chosen filter. 
 
